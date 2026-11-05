@@ -1,67 +1,125 @@
-# CVCA: LabDesk
+# CVCA: EcoTrace
 
-> Worked example for teaching (LabDesk). Not a student submission and not a real product.
-
-Lesson 3 (Prof. Seki, CVCA to Context Diagram). The Customer Value Chain Analysis lists every
-stakeholder of the lab seats and what flows between them: money (`$`), information (`i`) and
-goods or services. It is drawn before the system is designed, to find the problems and
-opportunities.
+The Customer Value Chain Analysis (CVCA) describes the stakeholders around EcoTrace and the value exchanged between them, including information, approvals, services, and assurance. It is a business-level view used to identify problems and opportunities before defining detailed system behavior.
 
 | Field | Value |
 |---|---|
-| Version | v1.0 (Lesson 3) |
+| Project | HPDQ Carbon Management & Reporting System (EcoTrace) |
+| Version | v1.0 |
+| Source | DBIZ I CVCA |
 | Next | [Context Diagram](context-diagram.md) |
 
 ## 1. Value chain (with the new system)
 
 ```mermaid
 flowchart LR
-  FAC["Faculty office<br>(client)"]
-  STU["Student"]
-  TEC["Lab Technician"]
-  LEC["Lecturer"]
-  UNI["University IT<br>(sign-in service)"]
-  MAIL["Email service<br>provider"]
-  TEAM["Project team"]
-  LD(["LabDesk<br>(new system)"])
+  subgraph CUSTOMER["CUSTOMER — HÒA PHÁT GANG THÉP"]
+    direction TB
+    EX["HPDQ Executive<br/>Board"]
+    ESG["Sustainability &<br/>ESG Department"]
+    TECH["Technology & Digital<br/>Transformation Dept"]
+    PROD["Production Divisions<br/>(Iron - Steel - Rolling)"]
+    FIN["Finance &<br/>Accounting"]
+    SALES["Export Sales &<br/>Marketing"]
+    PROC["Procurement &<br/>Raw Materials"]
+  end
 
-  FAC -->|"service: lab seats"| STU
-  FAC -->|"$ salary"| TEC
-  TEC -->|"service: working computers"| FAC
-  LEC -->|"i: class timetable"| FAC
-  FAC -->|"$ project budget"| TEAM
-  TEAM -->|"service: LabDesk"| FAC
-  STU -->|"i: booking, check-in"| LD
-  LD -->|"i: confirmation, no-show notice"| STU
-  TEC -->|"i: blocked seats"| LD
-  LD -->|"i: occupancy"| TEC
-  LD -->|"i: monthly report"| FAC
-  UNI -->|"i: who the user is"| LD
-  FAC -->|"$ subscription"| MAIL
-  MAIL -->|"service: email delivery"| LD
+  SYS["OUR<br/>SYSTEM"]
+
+  subgraph PARTNERS["PARTNERS"]
+    direction TB
+    BSI["BSI<br/>(Verification / Assurance)"]
+    SAP["SAP S/4HANA"]
+    LOG["Hoa Phat Logistics<br/>(Consignment Data)"]
+  end
+
+  EU["EU Importers<br/>(under CBAM)"]
+  DOM["Domestic End-users<br/>(Construction Devs)"]
+
+  SYS -->|"proposal"| EX
+  EX -->|"capital, approval, mandate"| SYS
+
+  ESG -->|"GHG Method, Emission Factors"| SYS
+  SYS -->|"Verified Inventory, PCF"| ESG
+
+  TECH -->|"SAP / ERP data, IT Request"| SYS
+  SYS -->|"System Integration, IT Assurance"| TECH
+
+  PROD -->|"Production-batch & Energy Data"| SYS
+  SYS -->|"Batch Cacbon Intensity"| PROD
+
+  FIN -->|"Budget, capex approval"| SYS
+  SYS -->|"ROI, Green-finance MRV"| FIN
+
+  SALES -->|"Customer Orders, Shipment data"| SYS
+  SYS -->|"Shipment-level PCF, CBAM report"| SALES
+
+  PROC -->|"Supplier carbon documents"| SYS
+  SYS -->|"Scope 3 Gaps, Supplier Scoring"| PROC
+
+  EU -->|"orders, feedback"| SYS
+  SYS -->|"shipment PCF, CBAM report"| EU
+
+  DOM -->|"orders, feedback"| SYS
+  SYS -->|"ESG data report, verification"| DOM
+
+  SYS -->|"Audit, Verification"| BSI
+  BSI -->|"ISO assurance, EPD"| SYS
+
+  SAP -->|"SAP / ERP data, IT Request"| SYS
+  SYS -->|"System Integration, IT Assurance"| SAP
+
+  SYS -->|"Shipment query"| LOG
+  LOG -->|"Batch-shipment link"| SYS
+
+  classDef company fill:#ffffff,stroke:#111111,stroke-width:1.5px,color:#111111;
+  classDef system fill:#ffffff,stroke:#063989,stroke-width:2px,color:#063989,font-size:21px,font-weight:bold;
+  classDef partner fill:#ffffff,stroke:#063989,stroke-width:1.8px,color:#063989;
+  classDef actor fill:#ffffff,stroke:#111111,stroke-width:1.5px,color:#111111;
+
+  class EX,ESG,TECH,PROD,FIN,SALES,PROC company;
+  class SYS system;
+  class BSI,SAP,LOG partner;
+  class EU,DOM actor;
+
+  style CUSTOMER fill:#ffffff,stroke:#111111,stroke-width:1.5px,color:#111111
+  style PARTNERS fill:#ffffff,stroke:#ffffff,color:#063989
+
+  linkStyle default stroke:#063989,stroke-width:2px;
 ```
 
-Today (before LabDesk) the booking information goes from students to a paper sheet at the lab
-door, and nobody passes usage information to the faculty office.
+The diagram represents the value chain **with EcoTrace**. It preserves the nodes, arrow directions, and flow labels of the team's approved v1, without a separate Before view.
 
 ## 2. Problems and opportunities
 
+The following are business needs inferred from the value exchanges in the CVCA, rather than confirmed findings from stakeholder interviews.
+
 | # | Stakeholder | Problem or opportunity |
 |---|---|---|
-| P-1 | Student | Popular slots fill in minutes on the paper sheet; students queue at the door without knowing if a seat is left. |
-| P-2 | Student, Faculty office | Students who signed up often do not come; their seats stay empty while others wait. |
-| P-3 | Lab Technician | Faulty computers are found only when a student complains; the seat is booked again the next slot. |
-| P-4 | Faculty office | No data on how labs are used, so opening hours and new equipment are planned by guess. |
+| P-1 | Sustainability & ESG; Production Divisions | GHG methods, emission factors, and production/energy records come from different sources. There is an opportunity to consolidate them into consistent carbon inventory and PCF information. |
+| P-2 | Production Divisions | Batch-level carbon intensity needs to be associated with production batches and their energy data to make the results useful to operations. |
+| P-3 | Procurement & Raw Materials | Supplier carbon documents need to be consolidated so that Scope 3 data gaps can be identified and supplier information can be assessed. |
+| P-4 | Export Sales & Marketing; Hoa Phat Logistics | Shipment information and batch-shipment links must be brought together to support shipment-level PCF and CBAM reporting. |
+| P-5 | EU Importers; Domestic End-users | Steel buyers need accessible carbon information, including shipment PCF/CBAM information for EU importers and ESG/verification information for domestic customers. |
+| P-6 | BSI; Sustainability & ESG | Carbon outputs need an independent assurance route so that verification findings can support the credibility of the information provided. |
+| P-7 | Technology & Digital Transformation Dept; SAP S/4HANA | EcoTrace depends on usable SAP/ERP information and suitable system integration and IT assurance. |
+| P-8 | HPDQ Executive Board; Finance & Accounting | Investment proposals, approvals, budgets, and performance/ROI information need to be linked to the system's expected business value. |
 
 ## 3. Stakeholder requirements
 
-Written as "<stakeholder> shall be able to ...", as in Prof. Seki's Lesson 4 design process. They
-become system requirements in [the architecture](../architecture/architecture.md).
+Written as **"<stakeholder> shall be able to ..."**, following the requirement style of Prof. Seki's LabDesk example. Each requirement traces back to an opportunity in Section 2; these are stakeholder-level needs, not detailed use cases.
 
 | ID | Stakeholder requirement | From |
 |---|---|---|
-| StR-01 | Students shall be able to secure a lab seat before they come to the lab. | P-1 |
-| StR-02 | Students shall be able to give back a seat they no longer need. | P-2 |
-| StR-03 | The faculty shall be able to reuse seats that booked students do not come for. | P-2 |
-| StR-04 | Lab Technicians shall be able to take a faulty seat out of booking until it is repaired. | P-3 |
-| StR-05 | The faculty shall be able to see how each lab is used. | P-4 |
+| StR-01 | The Sustainability & ESG Department shall be able to provide GHG methods and emission factors for carbon assessment. | P-1 |
+| StR-02 | The Sustainability & ESG Department shall be able to obtain carbon inventory and PCF information from EcoTrace. | P-1 |
+| StR-03 | Production Divisions shall be able to provide production-batch and energy data and obtain batch carbon intensity information. | P-2 |
+| StR-04 | Procurement & Raw Materials shall be able to provide supplier carbon documents and identify Scope 3 gaps and supplier assessment information. | P-3 |
+| StR-05 | Export Sales & Marketing shall be able to supply customer order and shipment information and obtain shipment-level PCF and CBAM reports. | P-4 |
+| StR-06 | Hoa Phat Logistics shall be able to provide batch-shipment links in response to shipment queries. | P-4 |
+| StR-07 | EU Importers shall be able to obtain shipment PCF and CBAM information and provide orders or feedback. | P-5 |
+| StR-08 | Domestic End-users shall be able to obtain ESG reporting and verification information and provide orders or feedback. | P-5 |
+| StR-09 | BSI shall be able to assess EcoTrace outputs for audit/verification and provide independent assurance findings. | P-6 |
+| StR-10 | The Technology & Digital Transformation Department shall be able to coordinate SAP/ERP data exchange, system integration, and IT assurance. | P-7 |
+| StR-11 | The HPDQ Executive Board shall be able to review system proposals and provide the required approval and mandate. | P-8 |
+| StR-12 | Finance & Accounting shall be able to review relevant budget/capex information and obtain ROI and green-finance MRV information. | P-8 |
