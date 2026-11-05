@@ -1,4 +1,4 @@
-# Activity Diagram: AD-UC-01 — Submit supplier & raw material carbon data
+# Activity Diagram: AD-UC-01 Submit supplier & raw material carbon data
 
 > **EcoTrace — HPDQ Carbon Management & Reporting System.** This document expands the team's existing activity diagram into the DBIZ2 activity-diagram template. The Mermaid flow is preserved from the supplied file. 
 
