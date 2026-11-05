@@ -10,7 +10,7 @@
 
 ## Diagram
 
-```
+```mermaid
 graph TD
     SYS["<b>HPDQ Carbon Management & Reporting system</b>"]
 
