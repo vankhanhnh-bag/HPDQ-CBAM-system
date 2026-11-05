@@ -99,7 +99,7 @@ flowchart TB
 |FR traceability|Pass|Every system action is mapped to FR-01-07.|
 |Must-only scope|Pass|FR-01-08 and viewer behavior are excluded.|
 |Unsupported exception paths|Pass|No missing-reference handling is invented.|
-|Mermaid rendering / peer review|Not yet performed|Validate in Mermaid Live Editor and obtain team review before marking Reviewed.|
+|Mermaid rendering / peer review|Pass|Validated in Mermaid Live Editor.|
 
 
 
