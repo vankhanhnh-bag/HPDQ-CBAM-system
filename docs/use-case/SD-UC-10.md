@@ -1,7 +1,6 @@
 # Sequence Diagram: SD-UC-10 Authenticate and sign in to the platform
 
-Lesson 4, analysis level. The student scans the QR code on the lab door with the phone camera; the
-link opens LabDesk in the phone browser.
+A user enters valid credentials (or OTP), the system authenticates the user and grants a secure login session.
 
 | Field | Value |
 |---|---|
