@@ -1,143 +1,123 @@
-# Activity Diagram: AD-UC-01 Reserve a seat
+# Activity Diagram: AD-UC-01 — Submit supplier & raw material carbon data
 
-> **Worked example for teaching (LabDesk).** LabDesk is the small reservation system used as the
-> class example in DBIZ2. It is not a student submission and not a real product.
+> **EcoTrace — HPDQ Carbon Management & Reporting System.** This document expands the team's existing activity diagram into the DBIZ2 activity-diagram template. The Mermaid flow is preserved from the supplied file. 
 
 | Field | Value |
 |---|---|
 | AD ID | AD-UC-01 |
-| Use case | UC-01 Reserve a seat |
-| Feature | F-01 Seat Booking |
-| Primary actor | Student |
-| Lanes | Student · LabDesk system · Email service |
-| Inputs (L3-L5) | Context Diagram v2 (Student, Email service) · Use Case Diagram v2 · Sequence: SD-UC-01 · Architecture v2 · W1 rows FR-01-01 to FR-01-06 |
-| Trigger | The student opens the booking page |
-| Preconditions | The student is signed in. Booking rights are not suspended (BR-04). |
-| Success end state | One `Booking` in state `Confirmed` exists for the student, the slot and the seat; a confirmation email has been requested. |
-| Failure end state | No new booking is created; the student sees why (existing booking, or seat taken). |
-| FRs covered | FR-01-01, FR-01-02, FR-01-03, FR-01-04, FR-01-05, FR-01-06 |
-| Business rules applied | BR-01, BR-03 |
-| Version / status | v1.0 · Reviewed |
-| Author | (team member) |
+| Use case | UC-01 Submit supplier & raw material carbon data |
+| Feature | Supplier and raw-material data collection |
+| Primary actor | Procurement Department |
+| Lanes | Procurement Department · EcoTrace |
+| Inputs (L3–L5) | Supplied AD-UC-01 diagram, Context Diagram, Use Case Diagram, corresponding Sequence Diagram, Architecture, and W1/FR baseline (not supplied for cross-checking) |
+| Trigger | The Procurement Department submits supplier delivery information. |
+| Preconditions | The actor must be able to access the submission process; authentication/authorization prerequisites are. |
+| Success end state | EcoTrace has successfully stored the submitted supplier delivery record (supplier identity, raw material type, quantity, and declared carbon data), and the Procurement Department receives a success confirmation. |
+| Failure end state | If storage fails, the user receives an unsuccessful-submission outcome; the flow ends without a confirmed saved record. Incomplete/invalid input is a **correction loop**, not a terminal failure. |
+| FRs covered | FR-01-01 (the only FR ID cited by the supplied diagram; verify full UC coverage against W1) |
+| Business rules applied | Completeness/validity of required delivery information; save-success verification. |
+| Version / status | v0.1 |
+| Author | Huyen Khanh |
 
 ## 1. Diagram
 
-Notation follows the DBIZ2 activity profile (`mermaid-activity-patterns.md`). Rendered with
-`swimlane-beta`, which needs Mermaid 11.16 or later.
+Notation follows the DBIZ2 activity profile (`mermaid-activity-patterns.md`). The diagram uses `swimlane-beta`, requiring Mermaid 11.16 or later.
 
 ```mermaid
 swimlane-beta TB
-  subgraph STU["Student"]
+  subgraph ACT["Procurement Department"]
     start@{ shape: sm-circ }
-    a1("Open the booking page")
-    a2("Choose lab and time slot")
-    a3("Choose a seat")
-    a4("Confirm the seat")
-    a6("Choose another seat and confirm")
-    a5("See booking confirmed")
+    a2("Submit supplier delivery information")
+    a4("Correct missing or invalid delivery information")
+    a3("Review successful submission outcome")
+    a5("Review unsuccessful submission outcome")
     stop1@{ shape: fr-circ }
     stop2@{ shape: fr-circ }
   end
-  subgraph SYS["LabDesk system"]
-    s1("Show slots with free-seat counts (FR-01-01)")
-    s2("Show seat map (FR-01-02)")
-    m2{" "}
-    d1{"Already booked<br>this slot?"}
-    s3("Show the existing booking (FR-01-05)")
-    d2{"Seat still free?"}
-    s4("Refresh seat map, explain seat was taken (FR-01-04)")
-    s5("Save booking (FR-01-03)")
-    o1["Booking [Confirmed]"]
-    f1@{ shape: fork }
-    s6("Update free-seat count")
-    j1@{ shape: join }
+  subgraph SYS["EcoTrace"]
+    m1{" "}
+    d1{"Required delivery information complete and valid?"}
+    s2("Return input errors and request correction (FR-01-01)")
+    s1("Capture and store supplier identity, raw material type, quantity and declared carbon data (FR-01-01)")
+    d2{"Delivery record stored successfully?"}
+    s3("Report that submission was not saved (FR-01-01)")
+    s4("Confirm successful submission (FR-01-01)")
   end
-  subgraph MAIL["Email service"]
-    e1("Send confirmation email with check-in QR (FR-01-06)")
-  end
-  start --> a1 --> s1 --> a2 --> s2 --> a3 --> a4 --> m2 --> d1
-  d1 -->|"[yes]"| s3 --> stop2
-  d1 -->|"[no]"| d2
-  d2 -->|"[no]"| s4 --> a6 --> m2
-  d2 -->|"[yes]"| s5 --> o1 --> f1
-  f1 --> s6 --> j1
-  f1 --> e1 --> j1
-  j1 --> a5 --> stop1
+  start --> m1 --> a2 --> d1
+  d1 -->|"[no]"| s2 --> a4 --> m1
+  d1 -->|"[yes]"| s1 --> d2
+  d2 -->|"[no]"| s3 --> a5 --> stop2
+  d2 -->|"[yes]"| s4 --> a3 --> stop1
 ```
 
 Reading notes:
 
-- `m2` is a **merge** node. The flow coming back after "Choose another seat and confirm" enters a
-  merge, not the decision `d1` or an action directly. A decision may legally have several incoming
-  flows only through a merge in this course profile, and an action with two incoming control flows
-  would wait for both (OMG UML 2.5.1, sub clause 15.2.3.2).
-- The fork `f1` and join `j1` say that updating the seat count and sending the email have no
-  required order. The student sees the confirmation only after both are done.
-- The seat map shows blocked seats as unavailable, so BR-03 is enforced before the decision `d2`.
+- `m1` is a **merge** for the first submission and the retry after the Procurement Department corrects invalid information. It does **not** mean those flows must occur concurrently.
+- `d1` checks the required delivery information before the storage action. The `[no]` branch returns validation errors and loops back through user correction; the `[yes]` branch proceeds to record storage.
+- `d2` checks whether the record was stored. The `[no]` branch terminates with an unsuccessful outcome, while the `[yes]` branch confirms success. The source diagram does not include a retry after a storage failure.
+- The diagram has no fork/join or explicit object-state node. It makes no claim about the record's complete lifecycle or duplicate-submission handling.
 
 ## 2. Node trace
 
-Every action in the system lane cites a requirement. Every decision cites the rule or requirement
-that decides it.
+Every EcoTrace action cites `FR-01-01` in the source. The decision nodes are traced to the same FR at the **activity level**; the exact validation/persistence clauses still need to be checked against W1.
 
 | Node | Kind | Text | Traces to |
 |---|---|---|---|
-| s1 | Action | Show slots with free-seat counts | FR-01-01 |
-| s2 | Action | Show seat map | FR-01-02, BR-03 |
-| d1 | Decision | Already booked this slot? | FR-01-05, BR-01 |
-| s3 | Action | Show the existing booking | FR-01-05 |
-| d2 | Decision | Seat still free? | FR-01-04 |
-| s4 | Action | Refresh seat map, explain seat was taken | FR-01-04 |
-| s5 | Action | Save booking | FR-01-03 |
-| o1 | Object node | Booking [Confirmed] | FR-01-03 (state value) |
-| s6 | Action | Update free-seat count | FR-01-01 (count must stay correct) |
-| e1 | Action (external lane) | Send confirmation email with check-in QR | FR-01-06 |
+| `m1` | Merge | Initial submission / corrected resubmission | Flow control; not a requirement action |
+| `d1` | Decision | Required delivery information complete and valid? | FR-01-01 (inferred from linked actions; validate against W1) |
+| `s2` | Action | Return input errors and request correction | FR-01-01 |
+| `s1` | Action | Capture and store supplier identity, raw material type, quantity and declared carbon data | FR-01-01 |
+| `d2` | Decision | Delivery record stored successfully? | FR-01-01 (inferred from linked actions; validate against W1) |
+| `s3` | Action | Report that submission was not saved | FR-01-01 |
+| `s4` | Action | Confirm successful submission | FR-01-01 |
 
 ## 3. Branches and acceptance tests
 
-One row per outgoing branch of every decision. DBIZ3 turns each row into at least one test.
+One row for each outgoing decision branch; the `[yes]` branch of `d1` is separated from the two possible outcomes at `d2`. These are **proposed acceptance scenarios** derived from the supplied flow, not confirmed implemented tests.
 
 | Branch | Given | When | Then |
 |---|---|---|---|
-| d1 [yes] | the student holds a Confirmed booking in slot 09:00 to 11:00 | they confirm another seat in the same slot | no booking is created and the existing booking is shown |
-| d1 [no] → d2 [no] | seat B-07 was free when the map loaded, then another student booked it | the first student confirms B-07 | no booking is created; the seat map reloads with B-07 marked booked and a message says the seat was just taken |
-| d1 [no] → d2 [yes] | seat B-07 is free and the student has no booking in the slot | the student confirms B-07 | one Booking in state Confirmed exists, the free-seat count drops by one, and a confirmation email is requested |
+| `d1 [no]` | A supplier delivery submission is missing a required field or includes an invalid value | Procurement submits the delivery information | EcoTrace returns input errors, asks for correction, and the Procurement Department can correct and resubmit; the storage action is not reached on this attempt. |
+| `d1 [yes]` | All required delivery information is complete and valid | Procurement submits the delivery information | EcoTrace attempts to capture and store supplier identity, material type, quantity, and declared carbon data; the flow proceeds to `d2`. |
+| `d2 [no]` | Valid information was submitted, but the record was not saved successfully | EcoTrace evaluates the storage outcome | EcoTrace reports that the submission was not saved; Procurement reviews the unsuccessful outcome and the flow ends. |
+| `d2 [yes]` | Valid information was submitted and the delivery record was stored successfully | EcoTrace evaluates the storage outcome | EcoTrace confirms submission success; Procurement reviews the confirmation and the flow ends. |
 
 ## 4. Object states used
 
+The supplied diagram does **not** show an explicit object node such as `DeliveryRecord [Stored]`. “Stored successfully” and “not saved” are **branch outcomes**, not approved enumeration values for a record's state field.
+
 | Object | States that appear in this diagram | Full state list (all diagrams) |
 |---|---|---|
-| Booking | Confirmed | Confirmed, Checked-in, Cancelled, No-show |
-
-These state names become the allowed values of `booking.status` in the DBIZ3 data model. Keep the
-spelling identical everywhere.
+| Supplier delivery record | No explicit UML object states; successful/unsuccessful storage outcomes only | **TBD** — confirm with data model and other diagrams |
 
 ## 5. Screens touched
 
-Filled in during Lesson 8, from the Screen List.
+Screen IDs cannot be assigned from the supplied AD alone. To be filled from the Lesson 8 Screen List.
 
-| Student action | Screen ID |
+| Procurement Department action / outcome | Screen ID |
 |---|---|
-| Open the booking page, Choose lab and time slot | S-F01-01 |
-| Choose a seat, Confirm the seat, Choose another seat and confirm | S-F01-02 |
-| See booking confirmed | S-F01-02 (success state) |
-| See the existing booking (branch d1 [yes]) | S-F01-02 (message with link to S-F01-03) |
+| Submit supplier delivery information | - |
+| Correct missing or invalid delivery information | - |
+| Review successful submission outcome | - |
+| Review unsuccessful submission outcome | - |
 
 ## 6. Open questions
 
 | # | Question | Blocking? | Default applied |
 |---|---|---|---|
-| 1 | [NEEDS CLARIFICATION: if the email service is down, is the booking still Confirmed?] | No | Yes: the booking stays Confirmed; the email is retried. The student sees the QR in My bookings. |
-| 2 | [NEEDS CLARIFICATION: how long before the slot starts does booking close?] | Yes | Booking closes when the slot starts (BR-02). |
+| 1 | [NEEDS CLARIFICATION: Which delivery fields are mandatory, and what are the validation rules for quantities, material types and declared carbon data?] | Yes — for precise acceptance tests | No formal validation rules assumed beyond the `d1` check. |
+| 2 | [NEEDS CLARIFICATION: Does FR-01-01 explicitly require both correction feedback and persistence-failure feedback, or should these trace to separate FRs?] | Yes — for traceability sign-off | Keep source FR-01-01 references until W1 is checked. |
+| 3 | [NEEDS CLARIFICATION: Can Procurement retry a save failure, and how are duplicate submissions prevented?] | No — for documenting the **current** flow; yes if retry/idempotency is a required scenario | Current diagram ends on storage failure; no retry or deduplication rule is assumed. |
+| 4 | [NEEDS CLARIFICATION: What are the official Feature ID, actor authentication/access preconditions, BR IDs and Screen IDs?] | Yes — for baseline consistency | Leave fields **TBD** pending source documents. |
 
 ## 7. Verification log
 
 | Check | Result | By | Date |
 |---|---|---|---|
-| Renders on mermaid.live | Pass | | |
-| Every decision has guards on all outgoing flows | Pass | | |
-| Every fork has a matching join | Pass | | |
-| Every system action cites an FR | Pass | | |
-| Every FR of UC-01 appears in the diagram | Pass (6 of 6) | | |
-| Lane names match the Context Diagram | Pass | | |
-| AI critic prompt run, findings resolved or logged | Pass, 2 findings → open questions 1 and 2 | | |
+| Renders on mermaid.live (Mermaid 11.16+) | Done | — | — |
+| Every decision has guards on all outgoing flows | Pass (static): `d1` and `d2` each have `[yes]` / `[no]` | Draft review | 2026-11-05 |
+| Every fork has a matching join | N/A — no fork nodes | Draft review | 2026-11-05 |
+| Every system action cites an FR | Pass (static): 4 of 4 EcoTrace actions | Draft review | 2026-11-05 |
+| Every FR of UC-01 appears in the diagram | **Pending** — only FR-01-01 is cited; W1/UC baseline not supplied | — | — |
+| Lane names match the Context Diagram | **Pending** — Context Diagram not supplied | — | — |
+| AI critic prompt run; findings resolved or logged | **Not run**; documentation uncertainties listed in Section 6 | — | — |
