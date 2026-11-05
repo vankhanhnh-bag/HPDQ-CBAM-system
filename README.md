@@ -36,7 +36,7 @@ docs/
 | 2 | L3 | [cvca.md](docs/context/cvca.md) | Stakeholders, money and information flows, problems, stakeholder requirements |
 | 3 | L3 | [context-diagram.md](docs/context/context-diagram.md) | LabDesk as a black box and the entities around it |
 | 4 | L4 | [use-case-diagram.md](docs/use-case/use-case-diagram.md) | Who wants LabDesk to do what; list of sequence diagrams |
-| 5 | L4 | [SD-UC-01.md](docs/use-case/SD-UC-01.md), [SD-UC-04.md](docs/use-case/SD-UC-04.md) | How the parts of LabDesk talk for one use case |
+| 5 | L4 | [SD-UC-01.md](docs/use-case/SD-UC-01.md), [SD-UC-04.md](docs/use-case/SD-UC-04.md), [SD-UC-08.md](docs/use-case/SD-UC-08.md) | How the parts of LabDesk talk for one use case |
 | 6 | L4 | [architecture.md](docs/architecture/architecture.md) and [adr/](docs/architecture/adr/) | System requirements, functional and physical design, three layers, decisions |
 | 7 | L5 | [w0-scope.md](docs/function-list/w0-scope.md) | Use case inventory, features, Won't-have, data, business rules |
 | 8 | L5 | [w1-function-list.md](docs/function-list/w1-function-list.md) | Every function with its EARS criterion, split into work items |
