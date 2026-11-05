@@ -1,0 +1,105 @@
+# Activity Diagram: AD-UC-07 Estimate \& analyze CBAM exposure for shipment
+
+|Field|Value|
+|-|-|
+|AD ID|AD-UC-07|
+|Use case|UC-07 Estimate \& analyze CBAM exposure for shipment|
+|Feature|F-02 CBAM Compliance \& Carbon Cost Estimation|
+|Primary actor|Export Sales \& Marketing Department|
+|Lanes|Export Sales \& Marketing · EcoTrace System|
+|Inputs (L3-L5)|Context Diagram v1 · Use Case Diagram v2 · Sequence: SD-UC-07 · W1 rows|
+|Trigger|Export Sales \& Marketing user selects a shipment batch to calculate CBAM liability|
+|Preconditions|User is authenticated with valid permissions; shipment and PCF data exist in the database|
+|Success end state|CBAM cost exposure and detailed breakdown report are calculated and displayed to the user|
+|Failure end state(s)|Loaded shipment data is incomplete or invalid; system displays error guidance and prompts user to select a valid batch|
+|FRs covered|FR-02-01, FR-02-02, FR-02-03, FR-02-04, FR-02-05, FR-02-06, FR-02-08, FR-02-09|
+|Business rules applied|BR-CBAM-01|
+|Version / status|v0.4 · Draft|
+|Author|Bảo Châu|
+
+## 1\. Diagram
+
+```mermaid
+swimlane-beta TB
+  subgraph CUST\\\\\\\["Export Sales \\\\\\\& Marketing"]
+    start@{ shape: sm-circ }
+    m1{" "}
+    a1("Select shipment batch \\\\\\\& submit parameters (FR-02-01)")
+    a2("Review estimated CBAM cost \\\\\\\& breakdown report (FR-02-09)")
+    stop1@{ shape: fr-circ }
+  end
+  subgraph SYS\\\\\\\["EcoTrace System"]
+    s1("Load shipment batch \\\\\\\& PCF data from DB (FR-02-01)")
+    db1\\\\\\\[(Shipment \\\\\\\& PCF DB)]
+    d1{"Loaded data valid \\\\\\\& complete? (FR-02-02)"}
+    s2("Display validation error / missing reason (FR-02-02)")
+    s3("Retrieve applicable EU ETS certificate price (FR-02-06)")
+    s4("Calculate embedded emissions, exemptions \\\\\\\& chargeable emissions (FR-02-03, FR-02-04, FR-02-05)")
+    s5("Calculate estimated CBAM cost \\\\\\\& generate breakdown report (FR-02-08, FR-02-09)")
+  end
+  start --> m1 --> a1 --> s1 --> d1
+  db1 -.-> s1
+  d1 -->|"\\\\\\\[Invalid / Missing]"| s2 --> m1
+  d1 -->|"\\\\\\\[Valid]"| s3 --> s4 --> s5 --> a2 --> stop1
+```
+
+Reading notes:
+
+* The flow queries the Shipment \& PCF Database first to load relevant batch parameters before executing the validation logic.
+* If mandatory parameters or PCF values are missing, the flow redirects back through merge node m1 to allow user correction.
+* The system lane is maintained as a single black-box lane (EcoTrace System) in accordance with Context Diagram specifications.
+
+## 2\. Node trace
+
+|Node|Kind|Text|Traces to|
+|-|-|-|-|
+|s1|Action|Load shipment batch \& PCF data from DB|FR-02-01|
+|db1|Data Store|Shipment \& PCF DB|FR-02-01|
+|d1|Decision|Loaded data valid \& complete?|FR-02-02 / BR-CBAM-01|
+|s2|Action|Display validation error / missing reason|FR-02-02|
+|s3|Action|Retrieve applicable EU ETS certificate price|FR-02-06|
+|s4|Action|Calculate embedded emissions, exemptions \& chargeable emissions|FR-02-03, FR-02-04, FR-02-05|
+|s5|Action|Calculate estimated CBAM cost \& generate breakdown report|FR-02-08, FR-02-09|
+
+## 3\. Branches and acceptance tests
+
+|Branch|Given|When|Then|
+|-|-|-|-|
+|d1 \[Invalid / Missing]|Shipment batch loaded from database|Required fields (e.g., net weight, destination, verified PCF) are missing or out of eligible range|System displays specific blocking validation errors and returns flow to parameter selection|
+|d1 \[Valid]|Shipment batch loaded from database|All required shipment, destination, and carbon metrics are valid and complete|System retrieves the applicable EU ETS price, calculates emissions/exemptions, and generates the CBAM cost breakdown|
+
+## 4\. Object states used
+
+|Object|States in this diagram|Full state list (all diagrams)|
+|-|-|-|
+|Shipment Batch|Selected, Loaded|Draft, Selected, Loaded, Processed|
+|CBAM Exposure Report|Generated|Pending, Calculated, Generated, Exported|
+
+## 5\. Screens touched
+
+|Actor action|Screen ID|
+|-|-|
+|Select shipment batch \& review report|SCR-02-01 (CBAM Exposure Dashboard)|
+
+## 6\. Open questions
+
+|#|Question|Blocking?|Default applied|
+|-|-|-|-|
+|1|What is the fallback behavior if the external EU ETS certificate price API is unavailable?|No|Use cached pricing from the previous business day|
+
+## 7\. Verification log
+
+|Check|Result|By|Date|
+|-|-|-|-|
+|Renders on mermaid.live|Pass|Bảo Châu|2026-11-02|
+|Every decision has guards on all outgoing flows, no overlap, no gap|Pass|Bảo Châu|2026-11-02|
+|No action has two incoming flows (merge used instead)|Pass|Bảo Châu|2026-11-02|
+|Every fork has a matching join|Pass (N/A)|Bảo Châu|2026-11-02|
+|Every system action cites an FR|Pass|Bảo Châu|2026-11-02|
+|Every FR of this use case appears in the diagram|8 core FRs covered|Bảo Châu|2026-11-02|
+|Lane names match the Context Diagram and the use case actors; no Web App, API or database lanes|Pass|Bảo Châu|2026-11-02|
+|Related sequence diagram uses the same names and FR IDs; its alt fragments appear here as decisions|Pass|Bảo Châu|2026-11-02|
+|AI critic prompt run, findings resolved or logged as open questions|Pass|Bảo Châu|2026-11-02|
+
+
+
