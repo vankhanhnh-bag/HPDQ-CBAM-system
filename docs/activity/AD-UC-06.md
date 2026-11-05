@@ -18,8 +18,8 @@
 ## 2\. Activity Diagram
 
 ```mermaid
-swimlane-beta TB
-  subgraph SYS\["EcoTrace System"]
+flowchart TB
+  subgraph SYS["EcoTrace System"]
     start1@{ shape: sm-circ }
     s1("Receive a newly created supplier, production, or shipment record event (FR-01-07)")
     d1{"What type of record was created?"}
@@ -34,9 +34,9 @@ swimlane-beta TB
     stop1@{ shape: fr-circ }
 
     start1 --> s1 --> d1
-    d1 -->|\[Supplier record]| s2
-    d1 -->|\[Production record]| s3
-    d1 -->|\[Shipment record]| s4
+    d1 -->|"Supplier record"| s2
+    d1 -->|"Production record"| s3
+    d1 -->|"Shipment record"| s4
     s2 --> s5
     s3 --> s5
     s4 --> s5
