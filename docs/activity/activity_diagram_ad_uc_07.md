@@ -21,26 +21,26 @@
 
 ```mermaid
 swimlane-beta TB
-  subgraph CUST\\\\\\\["Export Sales \\\\\\\& Marketing"]
+  subgraph CUST["Export Sales & Marketing"]
     start@{ shape: sm-circ }
     m1{" "}
-    a1("Select shipment batch \\\\\\\& submit parameters (FR-02-01)")
-    a2("Review estimated CBAM cost \\\\\\\& breakdown report (FR-02-09)")
+    a1("Select shipment batch & submit parameters (FR-02-01)")
+    a2("Review estimated CBAM cost & breakdown report (FR-02-09)")
     stop1@{ shape: fr-circ }
   end
-  subgraph SYS\\\\\\\["EcoTrace System"]
-    s1("Load shipment batch \\\\\\\& PCF data from DB (FR-02-01)")
-    db1\\\\\\\[(Shipment \\\\\\\& PCF DB)]
-    d1{"Loaded data valid \\\\\\\& complete? (FR-02-02)"}
+  subgraph SYS["EcoTrace System"]
+    s1("Load shipment batch & PCF data from DB (FR-02-01)")
+    db1[(Shipment & PCF DB)]
+    d1{"Loaded data valid & complete? (FR-02-02)"}
     s2("Display validation error / missing reason (FR-02-02)")
     s3("Retrieve applicable EU ETS certificate price (FR-02-06)")
-    s4("Calculate embedded emissions, exemptions \\\\\\\& chargeable emissions (FR-02-03, FR-02-04, FR-02-05)")
-    s5("Calculate estimated CBAM cost \\\\\\\& generate breakdown report (FR-02-08, FR-02-09)")
+    s4("Calculate embedded emissions, exemptions & chargeable emissions (FR-02-03, FR-02-04, FR-02-05)")
+    s5("Calculate estimated CBAM cost & generate breakdown report (FR-02-08, FR-02-09)")
   end
   start --> m1 --> a1 --> s1 --> d1
   db1 -.-> s1
-  d1 -->|"\\\\\\\[Invalid / Missing]"| s2 --> m1
-  d1 -->|"\\\\\\\[Valid]"| s3 --> s4 --> s5 --> a2 --> stop1
+  d1 -->|"[Invalid / Missing]"| s2 --> m1
+  d1 -->|"[Valid]"| s3 --> s4 --> s5 --> a2 --> stop1
 ```
 
 Reading notes:
