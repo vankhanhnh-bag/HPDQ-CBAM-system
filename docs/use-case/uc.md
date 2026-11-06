@@ -28,18 +28,19 @@ graph LR
         end
     end
 
-    Production["Production"] --- UC01
+    %% Cập nhật lại các liên kết Actor theo đúng yêu cầu
     Procurement["Procurement"] --- UC01
-    Procurement --- UC03
     Sustainability["Sustainability & ESG"] --- UC02
-    Sustainability --- UC04
-    Sustainability --- UC05
-    ExportSalesLeft["Export Sales & Marketing"] --- UC06
-    Customers["Customers"] --- UC09
+    Production["Production"] --- UC03
+    ExportSales["Export Sales & Marketing"] --- UC04
+    Procurement --- UC05
+    Sustainability --- UC06
 
+    %% Các liên kết giữ nguyên cho các UC khác
     ExportSalesRight["Export Sales & Marketing"] --- UC07
     ProcurementTeam["Procurement team"] --- UC07
     ComplianceTeam["Compliance team"] --- UC08
+    Customers["Customers"] --- UC09
     AllUsers["All users"] --- UC10
     SystemAdmin["System admin"] --- UC11
     Auditor["Auditor"] --- UC12
