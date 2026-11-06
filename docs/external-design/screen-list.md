@@ -1,4 +1,4 @@
-# Screen List: LabDesk (worked example)
+# Screen List: EcoTrace
 
 
 Screen ID pattern: `S-<feature>-<nn>`. Shared screens use `S-F00-<nn>`.
@@ -10,7 +10,7 @@ Screen ID pattern: `S-<feature>-<nn>`. Shared screens use `S-F00-<nn>`.
 |S-F04-02|Audit Log Viewer|System Admin; Auditor|F-04|A System Admin or Auditor opens the audit area to review system activity recorded by EcoTrace (UC-12).|After successful sign-in and authorization; Platform / Audit Logs menu.|UC-12 (working label: Review Audit Logs); FR-04-04 and FR-04-03.|Must|`screens/screen-spec-S-F04-02.md`|
 
 
-## Modals and overlays
+## Modals and overlays (ai điền thêm thì xóa 2 dòng mặc định trong bảng)
 
 | Modal | Opened from screen | Purpose |
 |---|---|---|
