@@ -111,8 +111,8 @@ Screen IDs cannot be derived from the supplied AD alone. To be filled from the L
 |---|---|---|---|
 | Renders on mermaid.live (Mermaid 11.16+) | Done | — | — |
 | Every decision has guards on all outgoing flows | Pass (static): `d1` has `[authorized]` and `[not authorized]` | Draft review | 2026-11-05 |
-| Every fork has a matching join | N/A — no fork nodes | Draft review | 2026-11-05 |
-| Every system action cites an FR | Pass (static): 4 of 4 EcoTrace actions | Draft review | 2026-11-05 |
+| Every fork has a matching join | N/A — no fork nodes | - | - |
+| Every system action cites an FR | Pass (static): 4 of 4 EcoTrace actions | - | - |
 | Every FR of UC-11 appears in the diagram | **Pending** — three FRs cited; W1/UC baseline not supplied | — | — |
 | Lane names match the Context Diagram | **Pending** — Context Diagram not supplied | — | — |
 | AI critic prompt run; findings resolved or logged | **Not run**; documentation uncertainties listed in Section 6 | — | — |
