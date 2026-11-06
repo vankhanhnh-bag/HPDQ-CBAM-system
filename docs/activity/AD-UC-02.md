@@ -1,3 +1,20 @@
+| Field | Value |
+| --- | --- |
+| AD ID | AD-UC-02 |
+| Use case | UC-02 Manage methodology versions and emission factors |
+| Feature | GHG Methodology & Emission Factor Version Management |
+| Primary actor | Sustainability & ESG user |
+| Lanes | Sustainability & ESG user · EcoTrace system |
+| Inputs (L3–L5) | Supplied AD-UC-02 Mermaid diagram, Context Diagram, Use Case Diagram, corresponding Sequence Diagram (SD-UC-02), Architecture, and W1/FR baseline |
+| Trigger | The Sustainability & ESG user enters and submits methodology version, factor value, unit, and effective date. |
+| Preconditions | The user must have access to the methodology management interface with valid authentication and authorization. |
+| Success end state | EcoTrace successfully validates inputs, checks for existing factors/justifications, creates/version-controls the record, writes to the GHG library and audit log, and displays a saved confirmation to the user. |
+| Failure end state | If validation fails or existing factor modifications lack a change justification, the system triggers a correction loop/rejection (showing errors or prompting for justification) rather than a terminal failure. |
+| FRs covered | FR-01-02 |
+| Business rules applied | Input parameters validation; version checking; mandatory change justification enforcement for existing factors; metadata setting (Created By/At, Updated By/At); version preservation; audit trail recording. |
+| Version / status | v1.0 |
+| Author | Quan |
+
 ```mermaid
 swimlane-beta TB
     subgraph USER["Sustainability & ESG user"]
