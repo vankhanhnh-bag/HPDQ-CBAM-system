@@ -1,9 +1,9 @@
 | Field | Value |
 |---|---|
-| Use case | UC-01 Submit supplier & raw material carbon data (W1) |
-| Primary actor | Procurement Department |
+| Use case | UC-09 Compare and recommend green steel options |
+| Primary actor | Customer |
 | Version | v1.0 |
-| FRs | FR-01-01 (Must) |
+| FRs | FR-03-01, FR-03-02, FR-03-03, FR-03-04 (Must) |
 
 ```mermaid
 sequenceDiagram
