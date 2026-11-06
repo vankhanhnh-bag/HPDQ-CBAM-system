@@ -51,6 +51,18 @@ graph LR
     Customers["Customers"] --- UC09
     AllUsers["All users"] --- UC10
     SystemAdmin["System admin"] --- UC11
+```
+## Sequence diagrams
+
+One sequence diagram per use case, at analysis level: the lifelines are the elements of the
+[physical design](../architecture/architecture.md).
+
+| Use case | Sequence diagram | Status |
+|---|---|---|
+| UC-01 Reserve a seat | [SD-UC-01](SD-UC-01.md) | Done (split from "Booking flow" after Lesson 7) |
+| UC-02 Cancel a booking | SD-UC-02 | Open: still to be drawn (Inputs check row 4, Owner A) |
+| UC-04 Check in at the lab | [SD-UC-04](SD-UC-04.md) | Done |
+| UC-03, UC-05, UC-06, UC-07 | (not drawn in this example) | Students practise on these |
     Auditor["Auditor"] --- UC12
 
 
