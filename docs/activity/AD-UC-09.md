@@ -44,5 +44,22 @@ graph TB
     j1 --> s7
     s7 --> s8
     s8 --> a2
+
+| Field | Value |
+|---|---|
+| AD ID | AD-UC-09 |
+| Use case | UC-09 Compare and recommend green steel options |
+| Feature | Green Steel Comparison & Recommendation |
+| Primary actor | Customer |
+| Lanes | Customer · EcoTrace system |
+| Inputs (L3–L5) | Supplied AD-UC-09 Mermaid diagram, Context Diagram, Use Case Diagram, corresponding Sequence Diagram (SD-UC-09), Architecture, and W3/FR baseline |
+| Trigger | The Customer inputs and submits comparison criteria. |
+| Preconditions | The customer must have access to the comparison interface and valid authentication/authorization. |
+| Success end state | EcoTrace successfully validates inputs, queries product profiles and CBAM costs, calculates scores, ranks options with Primary/Alternative flags, and displays the recommended results to the customer. |
+| Failure end state | If validation fails or no products are found, the system triggers a **correction loop** (identifies errors or suggests filter/partial match adjustments, prompting the user to re-input criteria) rather than a terminal failure. |
+| FRs covered | FR-03-01, FR-03-02, FR-03-03, FR-03-04 |
+| Business rules applied | Input criteria validation; querying product profiles and CBAM costs; parallel calculation of PCF/data quality and carbon intensity/CBAM cost; overall scoring; ranking and assignment of Primary/Alternative flags. |
+| Version / status | v1.0 |
+| Author | Quan |
     a2 --> stop1
 ```
