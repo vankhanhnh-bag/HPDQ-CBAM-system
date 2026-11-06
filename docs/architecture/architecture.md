@@ -4,9 +4,6 @@ Lesson 4 (Prof. Seki, architectural design). The steps follow the design process
 stakeholder requirements, system requirements, functional design, physical design, three layers.
 Decisions are recorded as ADRs (section 4).
 
-EcoTrace is the product name of the **HPDQ Carbon Management & Reporting System** shown in the
-Context Diagram.
-
 | Field | Value |
 |---|---|
 | Version | v1.1 |
@@ -137,4 +134,4 @@ groups of W0 Table 4.
 | Version | When | Change | Why |
 |---|---|---|---|
 | v1 | Lesson 1 | Web app, Access & audit service, Carbon data / traceability service, PCF service, CBAM service, Green steel comparison service, Report service, Integration adapter, database | First draft |
-| v1.1 | Lesson 4 | "From" column now uses the official StR-01 to StR-12 of the CVCA; draft stakeholder table removed; inputs name the official CVCA and Context Diagram; open points updated | CVCA and Context Diagram finalized |
+| v2 | Lesson 4 | "From" column now uses the official StR-01 to StR-12 of the CVCA; draft stakeholder table removed; inputs name the official CVCA and Context Diagram; open points updated | CVCA and Context Diagram finalized |
