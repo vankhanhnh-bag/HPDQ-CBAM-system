@@ -1,7 +1,9 @@
+# Use Case Diagram: LabDesk
+
 | Field | Value |
 |---|---|
 
-| Actors | Student, Lab Technician (primary); Time (starts UC-05); Email service (secondary) |
+| Actors | Procurement, Sustainability & ESG, Export Sales & Marketing, Customers; Time (starts UC-01) |
 
 ## Diagram
 ```mermaid
