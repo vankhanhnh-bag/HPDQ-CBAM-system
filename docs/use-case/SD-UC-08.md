@@ -1,8 +1,6 @@
 
 # Sequence Diagram: SD-UC-08 Manage CBAM regulatory rules & parameters
 
-Lesson 4, analysis level: how the parts of EcoTrace talk to each other when a Compliance / Product Owner manages CBAM regulatory rules. The lifelines are elements of the [physical design](../architecture/architecture.md). The actor's choices to view, edit or activate a rule set are shown in the activity diagram [AD-UC-08](../activity/AD-UC-08.md), not here.
-
 | Field | Value |
 |---|---|
 | Use case | UC-08 Manage CBAM regulatory rules & parameters |
