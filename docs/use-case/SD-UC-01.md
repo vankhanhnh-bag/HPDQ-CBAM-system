@@ -6,10 +6,8 @@ Lesson 4, analysis level: how EcoTrace components interact when the Procurement 
 | Field | Value |
 |---|---|
 | Use case | **UC-01 Submit supplier & raw material carbon data** (W1) |
-| Primary actor | Procurement Department |
 | Version | v1.0 |
 | FRs | **FR-01-01 (Must)** |
-| Sources | Midterm Excel: W1 `FR-01-01-FE` (supplier/raw-material entry form), `FR-01-01-BE` (API: validate and store carbon record), W4 Must; team-approved AD-UC-01 v0.3 |
 
 ```mermaid
 sequenceDiagram
