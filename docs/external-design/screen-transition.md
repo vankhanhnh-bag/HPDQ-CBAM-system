@@ -1,47 +1,52 @@
-# Screen Transition Diagram: LabDesk (worked example)
+# Screen Transition Diagram: EcoTrace
 
-> Worked example for teaching. Not a student submission and not a real product.
-
-## 1. Student
+## 1. All users
 
 ```mermaid
 flowchart LR
-  entry(["Opens LabDesk"])
-  qr(["Scans lab door QR"])
-  mail(["Link in email"])
-  S00_01["S-F00-01<br>Sign in"]
-  S01_01["S-F01-01<br>Slot picker"]
-  S01_02["S-F01-02<br>Seat map"]
-  S01_03["S-F01-03<br>My bookings"]
-  S02_01["S-F02-01<br>Check-in result"]
+  entry(["Entry: user opens EcoTrace or requests a protected page while signed out"])
+  S00_01["S-F00-01<br>Sign In"]
+  destination(["Requested EcoTrace workspace / feature<br>(outside this F-04 screen list)"])
+
   entry --> S00_01
-  S00_01 -->|"signed in"| S01_01
-  S01_01 -->|"picks a slot"| S01_02
-  S01_02 -->|"back"| S01_01
-  S01_02 -->|"[booking saved] View my bookings"| S01_03
-  S01_03 -->|"Book another"| S01_01
-  mail --> S01_03
-  qr --> S02_01
-  S02_01 -->|"View my bookings"| S01_03
+  S00_01 -->|"credentials accepted; session established"| destination
+  S00_01 -->|"credentials rejected; user retries"| S00_01
 ```
 
-Main task "book a seat": S-F01-01 → S-F01-02 → success state. Two screens from the start screen.
+The sign-in flow ends at the destination the user originally requested. The destination may belong to another EcoTrace feature and is therefore outside this Feature 4 screen list.
 
-## 2. Lab Technician
+## 11. System Admin
 
 ```mermaid
 flowchart LR
-  entry(["Opens LabDesk"])
-  S00_01["S-F00-01<br>Sign in"]
-  S03_01["S-F03-01<br>Lab occupancy"]
-  S03_02["S-F03-02<br>Seat maintenance"]
+  entry(["Entry: System Admin opens Platform / Access while signed out"])
+  S00_01["S-F00-01<br>Sign In"]
+  S04_01["S-F04-01<br>User & Access Management"]
+  S04_02["S-F04-02<br>Audit Log Viewer"]
+  workspace(["EcoTrace workspace<br>(outside this F-04 screen list)"])
+
   entry --> S00_01
-  S00_01 -->|"signed in as technician"| S03_01
-  S03_01 -->|"Manage seats"| S03_02
-  S03_02 -->|"back"| S03_01
+  S00_01 -->|"authenticated; required permission granted"| S04_01
+  S04_01 -->|"opens Audit Logs"| S04_02
+  S04_02 -->|"returns to User & Access Management"| S04_01
+  S04_01 -->|"returns to workspace"| workspace
+  S04_02 -->|"returns to workspace"| workspace
+```
+## 12. Auditor / System Admin
+
+```mermaid
+flowchart LR
+  entry(["Entry: System Admin or Auditor opens Audit Logs while signed out"])
+  S00_01["S-F00-01<br>Sign In"]
+  S04_02["S-F04-02<br>Audit Log Viewer"]
+  workspace(["EcoTrace workspace<br>(outside this F-04 screen list)"])
+
+  entry --> S00_01
+  S00_01 -->|"authenticated; audit-view permission granted"| S04_02
+  S04_02 -->|"returns to workspace"| workspace
 ```
 
-## Checks
+## Checks (chưa fix)
 
 - Every screen in the Screen List appears: yes (7 of 7).
 - Every screen reachable from an entry point: yes.
@@ -52,13 +57,10 @@ flowchart LR
 
 ## Usage-flow paths
 
-| Actor | Usage-flow arrow | Path on this diagram |
-|---|---|---|
-| Student | UC-01 to UC-03 | S-F01-02 Seat map → S-F01-03 My bookings ("[booking saved] View my bookings") |
-| Student | UC-03 to UC-04 | The student leaves LabDesk and walks to the lab; entry point "Scans lab door QR" → S-F02-01 |
-| Student | UC-03 to UC-02 | Same screen: S-F01-03 My bookings, modal "Cancel booking?" |
-| Lab Technician | UC-07 to UC-06 | S-F03-01 Lab occupancy → S-F03-02 Seat maintenance ("Manage seats") |
-| Lab Technician | UC-06 to UC-07 | S-F03-02 Seat maintenance → S-F03-01 Lab occupancy ("back") |
+|Usage-flow arrow|Path on this diagram|
+|-|-|
+|UC-10 to UC-11|System Admin: `S-F00-01` → `S-F04-01` (authenticated; permission granted).|
+|UC-10 to UC-12|System Admin / Auditor: `S-F00-01` → `S-F04-02` (authenticated; audit-view permission granted).|
+|UC-11 to UC-12|System Admin: `S-F04-01` → `S-F04-02` (opens Audit Logs).|
 
-LabDesk has 7 screens, so a single diagram would also work; it keeps one per actor because the two
-actors share only the sign-in screen.
+
