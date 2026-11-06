@@ -70,7 +70,11 @@ One sequence diagram per use case, at analysis level: the lifelines are the elem
 | UC-10 Authenticate and sign in to the platform | [SD-UC-10](SD-UC-10.md) | Done (split from "Booking flow" after Lesson 7) |
 | UC-11 Configure Role-Based Access Control (RBAC) and system authorization |  [SD-UC-11](SD-UC-11.md)  | Open: still to be drawn (Inputs check row 4, Owner A) |
 | UC-12 Monitor, track, and export system audit logs | [SD-UC-12](SD-UC-12.md) | Done |
-    Auditor["Auditor"] --- UC12
+
+## Change log
+
+| Version | When | Change | Why |
+|---|---|---|---|
 
 
 
