@@ -59,10 +59,18 @@ One sequence diagram per use case, at analysis level: the lifelines are the elem
 
 | Use case | Sequence diagram | Status |
 |---|---|---|
-| UC-01 Reserve a seat | [SD-UC-01](SD-UC-01.md) | Done (split from "Booking flow" after Lesson 7) |
-| UC-02 Cancel a booking | SD-UC-02 | Open: still to be drawn (Inputs check row 4, Owner A) |
-| UC-04 Check in at the lab | [SD-UC-04](SD-UC-04.md) | Done |
-| UC-03, UC-05, UC-06, UC-07 | (not drawn in this example) | Students practise on these |
+| UC-01 Submit supplier & raw material carbon data | [SD-UC-01](SD-UC-01.md) | Done (split from "Booking flow" after Lesson 7) |
+| UC-02 Manage GHG methodology & emission factors | SD-UC-02 | Open: still to be drawn (Inputs check row 4, Owner A) |
+| UC-03 Access batch carbon intensity | [SD-UC-04](SD-UC-04.md) | Done |
+| UC-04 Calculate shipment-level PCF | [SD-UC-01](SD-UC-01.md) | Done (split from "Booking flow" after Lesson 7) |
+| UC-05 Perform Scope 3 assessment | SD-UC-02 | Open: still to be drawn (Inputs check row 4, Owner A) |
+| UC-06 View carbon traceability record | [SD-UC-04](SD-UC-04.md) | Done |
+| UC-07 Estimate & analyze CBAM exposure for shipment | [SD-UC-01](SD-UC-01.md) | Done (split from "Booking flow" after Lesson 7) |
+| UC-08 Manage CBAM regulatory rules & parameters | SD-UC-02 | Open: still to be drawn (Inputs check row 4, Owner A) |
+| UC-09 Compare and recommend green steel options | [SD-UC-04](SD-UC-04.md) | Done |
+| UC-10 Authenticate and sign in to the platform | [SD-UC-01](SD-UC-01.md) | Done (split from "Booking flow" after Lesson 7) |
+| UC-11 Configure Role-Based Access Control (RBAC) and system authorization | SD-UC-02 | Open: still to be drawn (Inputs check row 4, Owner A) |
+| UC-12 Monitor, track, and export system audit logs | [SD-UC-04](SD-UC-04.md) | Done |
     Auditor["Auditor"] --- UC12
 
 
