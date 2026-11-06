@@ -1,3 +1,9 @@
+| Field | Value |
+|---|---|
+
+| Actors | Student, Lab Technician (primary); Time (starts UC-05); Email service (secondary) |
+
+## Diagram
 ```mermaid
 %%{init: {'theme': 'base', 'flowchart': {'nodeSpacing': 40, 'rankSpacing': 50}}}%%
 graph LR
