@@ -16,15 +16,14 @@
 | Version / status | v1.0 |
 | Author | Quan |
 
-
 ```mermaid
-graph TB
+swimlane-beta TB
     subgraph CUST["Customer"]
-        start((Start))
+        start@{ shape: sm-circ }
         m1{" "}
         a1["Input and submit comparison criteria (FR-03-01-BE)"]
         a2["Display results (FR-03-03-FE, FR-03-04-FE)"]
-        stop1((Stop))
+        stop1@{ shape: fr-circ }
     end
 
     subgraph SYS["EcoTrace system"]
@@ -35,10 +34,10 @@ graph TB
         db1[(Product database)]
         d2{"Products found?"}
         s4["Check partial matches or suggest filter adjustments"]
-        f1["Fork"]
+        f1@{ shape: fork }
         s5["Fetch PCF & data quality"]
         s6["Calculate carbon intensity & CBAM cost"]
-        j1["Join"]
+        j1@{ shape: join }
         s7["Calculate overall score (FR-03-03-BE)"]
         s8["Rank and assign flags Primary / Alternative (FR-03-04-BE)"]
     end
@@ -63,7 +62,7 @@ graph TB
     j1 --> s7
     s7 --> s8
     s8 --> a2
-   a2 --> stop1
+    a2 --> stop1
 ```
 Reading notes:
 
