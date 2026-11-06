@@ -55,11 +55,3 @@ graph LR
 
 
 
-| Use case | Sequence diagram | Status |
-|---|---|---|
-| UC-01 Submit supplier & raw material carbon data | [SD-UC-01](SD-UC-01.md) | Done |
-| UC-02 Manage GHG methodology & emission factors | SD-UC-02 | Open: still to be drawn |
-| UC-04 Calculate shipment-level PCF | [SD-UC-04](SD-UC-04.md) | Done |
-| UC-03, UC-05, UC-06, UC-07, UC-08... | (not drawn in this example) | Students practise on these |
-| UC-11 Configure RBAC & authorization | [SD-UC-11](SD-UC-11.md) | Open: still to be drawn |
-| UC-12 Monitor / export audit logs | [SD-UC-12](SD-UC-12.md) | Open: still to be drawn |
