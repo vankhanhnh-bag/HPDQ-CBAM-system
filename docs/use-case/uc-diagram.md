@@ -2,7 +2,6 @@
 
 | Field | Value |
 |---|---|
-
 | Actors | Procurement, Sustainability & ESG, Export Sales & Marketing, Customers; Time (starts UC-01) |
 
 ## Diagram
@@ -60,7 +59,7 @@ One sequence diagram per use case, at analysis level: the lifelines are the elem
 | Use case | Sequence diagram | Status |
 |---|---|---|
 | UC-01 Submit supplier & raw material carbon data | [SD-UC-01](SD-UC-01.md) | Done (split from "Booking flow" after Lesson 7) |
-| UC-02 Manage GHG methodology & emission factors | SD-UC-02 | Open: still to be drawn (Inputs check row 4, Owner A) |
+| UC-02 Manage GHG methodology & emission factors |  [SD-UC-02](SD-UC-02.md)  | Open: still to be drawn (Inputs check row 4, Owner A) |
 | UC-03 Access batch carbon intensity | [SD-UC-03](SD-UC-03.md) | Done |
 | UC-04 Calculate shipment-level PCF | [SD-UC-04](SD-UC-04.md) | Done (split from "Booking flow" after Lesson 7) |
 | UC-05 Perform Scope 3 assessment |  [SD-UC-05](SD-UC-05.md)  | Open: still to be drawn (Inputs check row 4, Owner A) |
