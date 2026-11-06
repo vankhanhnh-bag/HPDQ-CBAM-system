@@ -4,7 +4,7 @@ graph LR
     subgraph EcoTrace["System Boundary: EcoTrace"]
         direction TB
         
-        subgraph F1["F-01 Carbon Traceability & Product Carbon Footprint Management Operations"]
+        subgraph F1["F-01 Carbon Traceability & Product Carbon<br/>Footprint Management Operations"]
             UC01["UC-01 Submit supplier &<br/>raw material carbon data"]
             UC02["UC-02 Manage GHG methodology<br/>& emission factors"]
             UC03["UC-03 Access batch carbon intensity"]
@@ -29,7 +29,7 @@ graph LR
         end
     end
 
-    %% Các liên kết Actor đã chỉnh sửa theo đúng yêu cầu
+    %% Các liên kết Actor theo đúng yêu cầu đã xác nhận
     Procurement["Procurement"] --- UC01
     Sustainability["Sustainability & ESG"] --- UC02
     Production["Production"] --- UC03
