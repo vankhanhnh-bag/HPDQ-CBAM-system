@@ -53,9 +53,7 @@ graph LR
     SystemAdmin["System admin"] --- UC11
     Auditor["Auditor"] --- UC12
 
-## Sequence diagrams
 
-One sequence diagram per use case, at analysis level: the lifelines are the elements of the [physical design](../architecture/architecture.md).
 
 | Use case | Sequence diagram | Status |
 |---|---|---|
