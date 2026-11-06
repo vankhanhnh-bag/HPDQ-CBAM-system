@@ -1,18 +1,19 @@
 # CVCA: EcoTrace
 
+> HPDQ Carbon Management & Reporting System (EcoTrace) — DBIZ II.
+
 The Customer Value Chain Analysis (CVCA) describes the stakeholders around EcoTrace and the value exchanged between them, including information, approvals, services, and assurance. It is a business-level view used to identify problems and opportunities before defining detailed system behavior.
 
 | Field | Value |
 |---|---|
 | Project | HPDQ Carbon Management & Reporting System (EcoTrace) |
-| Version | v1.0 |
+| Version | v2 |
 | Source | DBIZ I CVCA |
 | Next | [Context Diagram](context-diagram.md) |
 
 ## 1. Value chain (with the new system)
 
 ```mermaid
-
 flowchart LR
   subgraph CUSTOMER["CUSTOMER — HÒA PHÁT DUNG QUẤT"]
     direction TB
@@ -30,6 +31,8 @@ flowchart LR
   subgraph PARTNERS["PARTNERS"]
     direction TB
     BSI["BSI<br/>(Verification / Assurance)"]
+    VINIT["VinIT<br/>(Data & AI Platform)"]
+    VCB["Vietcombank<br/>(Green Finance)"]
     LOG["Hoa Phat Logistics<br/>(Consignment Data)"]
   end
 
@@ -66,6 +69,12 @@ flowchart LR
   SYS -->|"Audit, Verification"| BSI
   BSI -->|"ISO assurance, EPD"| SYS
 
+  SYS -->|"Requirement, Payment"| VINIT
+  VINIT -->|"Data integration, AI"| SYS
+
+  SYS -->|"MRV Reporting"| VCB
+  VCB -->|"Green Credit, Capital"| SYS
+
   SYS -->|"Shipment query"| LOG
   LOG -->|"Batch-shipment link"| SYS
 
@@ -76,7 +85,7 @@ flowchart LR
 
   class EX,ESG,TECH,PROD,FIN,SALES,PROC company;
   class SYS system;
-  class BSI,LOG partner;
+  class BSI,VINIT,VCB,LOG partner;
   class EU,DOM actor;
 
   style CUSTOMER fill:#ffffff,stroke:#111111,stroke-width:1.5px,color:#111111
@@ -85,11 +94,11 @@ flowchart LR
   linkStyle default stroke:#063989,stroke-width:2px;
 ```
 
-The diagram represents the value chain **with EcoTrace**. It preserves the nodes, arrow directions, and flow labels of the team's approved v1, without a separate Before view.
+The diagram represents the value chain **with EcoTrace**, without a separate Before view. It retains the finalized v7 stakeholders and exchanges, and restores VinIT and Vietcombank with their original DBIZ I arrow labels. SAP/ERP data remain represented by the Technology & Digital Transformation Department; SAP S/4HANA is not a separate partner. Partner exchanges express business relationships, not necessarily functions or integrations implemented in DBIZ II.
 
 ## 2. Problems and opportunities
 
-The following are business needs inferred from the value exchanges in the CVCA, rather than confirmed findings from stakeholder interviews.
+The following are business problems and opportunities inferred from the value exchanges in the CVCA, rather than confirmed findings from stakeholder interviews. Partner-related opportunities do not by themselves establish that the related capabilities are included in the DBIZ II implementation.
 
 | # | Stakeholder | Problem or opportunity |
 |---|---|---|
@@ -99,12 +108,14 @@ The following are business needs inferred from the value exchanges in the CVCA, 
 | P-4 | Export Sales & Marketing; Hoa Phat Logistics | Shipment information and batch-shipment links must be brought together to support shipment-level PCF and CBAM reporting. |
 | P-5 | EU Importers; Domestic End-users | Steel buyers need accessible carbon information, including shipment PCF/CBAM information for EU importers and ESG/verification information for domestic customers. |
 | P-6 | BSI; Sustainability & ESG | Carbon outputs need an independent assurance route so that verification findings can support the credibility of the information provided. |
-| P-7 | Technology & Digital Transformation Dept; SAP S/4HANA | EcoTrace depends on usable SAP/ERP information and suitable system integration and IT assurance. |
+| P-7 | Technology & Digital Transformation Dept | EcoTrace needs usable SAP/ERP information, system integration, and IT assurance to support reliable data exchange. |
 | P-8 | HPDQ Executive Board; Finance & Accounting | Investment proposals, approvals, budgets, and performance/ROI information need to be linked to the system's expected business value. |
+| P-9 | VinIT; Technology & Digital Transformation Dept | External data integration and AI services are a potential support opportunity, but their requirements, cost, and value need to be defined before engagement. |
+| P-10 | Vietcombank; Finance & Accounting | MRV reporting may support access to green credit or capital, provided it is suitable for the partner's assessment and financing criteria. |
 
 ## 3. Stakeholder requirements
 
-Written as **"<stakeholder> shall be able to ..."**, following the requirement style of Prof. Seki's LabDesk example. Each requirement traces back to an opportunity in Section 2; these are stakeholder-level needs, not detailed use cases.
+Written as **"<stakeholder> shall be able to ..."**, following the requirement style of Prof. 
 
 | ID | Stakeholder requirement | From |
 |---|---|---|
@@ -120,3 +131,5 @@ Written as **"<stakeholder> shall be able to ..."**, following the requirement s
 | StR-10 | The Technology & Digital Transformation Department shall be able to coordinate SAP/ERP data exchange, system integration, and IT assurance. | P-7 |
 | StR-11 | The HPDQ Executive Board shall be able to review system proposals and provide the required approval and mandate. | P-8 |
 | StR-12 | Finance & Accounting shall be able to review relevant budget/capex information and obtain ROI and green-finance MRV information. | P-8 |
+| StR-13 | VinIT shall be able to receive the system's requirements and agreed payment and provide data integration and AI services as a partner. | P-9 |
+| StR-14 | Vietcombank shall be able to review MRV reporting to assess potential green credit or capital support. | P-10 |
