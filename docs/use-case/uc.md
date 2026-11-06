@@ -1,5 +1,5 @@
 ```mermaid
-%%{init: {'theme': 'base', 'flowchart': {'nodeSpacing': 50, 'rankSpacing': 60}}}%%
+%%{init: {'theme': 'base', 'flowchart': {'nodeSpacing': 40, 'rankSpacing': 50}}}%%
 graph LR
     subgraph EcoTrace["System Boundary: EcoTrace"]
         direction TB
@@ -29,7 +29,7 @@ graph LR
         end
     end
 
-    %% Các liên kết Actor
+    %% Các liên kết Actor đã chỉnh sửa theo đúng yêu cầu
     Procurement["Procurement"] --- UC01
     Sustainability["Sustainability & ESG"] --- UC02
     Production["Production"] --- UC03
