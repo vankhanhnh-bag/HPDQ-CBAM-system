@@ -1,11 +1,12 @@
 ```mermaid
+%%{init: {'theme': 'base', 'flowchart': {'nodeSpacing': 50, 'rankSpacing': 60}}}%%
 graph LR
     subgraph EcoTrace["System Boundary: EcoTrace"]
         direction TB
         
         subgraph F1["F-01 Carbon Traceability & Product Carbon Footprint Management Operations"]
-            UC01["UC-01 Submit supplier & raw material carbon data"]
-            UC02["UC-02 Manage GHG methodology & emission factors"]
+            UC01["UC-01 Submit supplier &<br/>raw material carbon data"]
+            UC02["UC-02 Manage GHG methodology<br/>& emission factors"]
             UC03["UC-03 Access batch carbon intensity"]
             UC04["UC-04 Calculate shipment-level PCF"]
             UC05["UC-05 Perform Scope 3 assessment"]
@@ -28,7 +29,7 @@ graph LR
         end
     end
 
-    %% Cập nhật lại các liên kết Actor theo đúng yêu cầu
+    %% Các liên kết Actor
     Procurement["Procurement"] --- UC01
     Sustainability["Sustainability & ESG"] --- UC02
     Production["Production"] --- UC03
@@ -36,7 +37,6 @@ graph LR
     Procurement --- UC05
     Sustainability --- UC06
 
-    %% Các liên kết giữ nguyên cho các UC khác
     ExportSalesRight["Export Sales & Marketing"] --- UC07
     ProcurementTeam["Procurement team"] --- UC07
     ComplianceTeam["Compliance team"] --- UC08
