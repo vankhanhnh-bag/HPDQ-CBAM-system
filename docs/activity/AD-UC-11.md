@@ -7,13 +7,13 @@
 | Feature | RBAC configuration / access-control administration |
 | Primary actor | System Admin |
 | Lanes | System Admin · EcoTrace |
-| Inputs (L3–L5) | Supplied AD-UC-11 diagram; **TBD:** Context Diagram, Use Case Diagram, corresponding Sequence Diagram, Architecture, and W1/FR baseline |
+| Inputs (L3–L5) | Supplied AD-UC-11 diagram; Context Diagram, Use Case Diagram, corresponding Sequence Diagram, Architecture, and W1/FR baseline |
 | Trigger | A System Admin requests access to RBAC configuration. |
 | Preconditions | An actor attempts the admin RBAC workflow |
 | Success end state | RBAC access-control policies are updated, an immutable RBAC-change audit event is recorded, and the System Admin reviews the updated policies. |
 | Failure end state | If the requester lacks RBAC configuration permission, EcoTrace denies configuration access; the update and change-audit actions are not reached. |
 | FRs covered | FR-04-02 · FR-04-03 · FR-04-04 |
-| Business rules applied | Only authorized principals may configure RBAC (expressed by FR-04-03); successful changes must be audited (expressed by FR-04-04). Formal BR IDs: **TBD**. |
+| Business rules applied | Only authorized principals may configure RBAC (expressed by FR-04-03); successful changes must be audited (expressed by FR-04-04). |
 | Version / status | v0.1 |
 | Author | Huyen Khanh |
 
