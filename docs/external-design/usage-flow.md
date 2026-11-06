@@ -30,6 +30,90 @@ flowchart LR
 |-|-|-|-|
 |1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
 
+## Procurement: record supplier and raw material carbon data
+
+```mermaid
+flowchart LR
+  A(["Procurement needs to record carbon information for a supplier delivery"])
+  U1["UC-01: Submit supplier & raw material carbon data"]
+  Z(["Supplier delivery carbon record stored in EcoTrace"])
+  A --> U1 --> Z
+```
+
+|Step|Use case|Activity diagram|Screens (fill in after Block 2)|
+|-|-|-|-|
+|1|UC-01 Submit supplier & raw material carbon data|`docs/activity/AD-UC-01.md`|-|
+
+## Procurement: assess Scope 3 emissions
+
+```mermaid
+flowchart LR
+  A(["Procurement needs to assess Scope 3 emissions for a supplier or material category"])
+  U1["UC-05: Perform Scope 3 assessment"]
+  Z(["Scope 3 assessment summary available for review"])
+  A --> U1 --> Z
+```
+
+|Step|Use case|Activity diagram|Screens (fill in after Block 2)|
+|-|-|-|-|
+|1|UC-05 Perform Scope 3 assessment|`docs/activity/AD-UC-05.md` **(not present in current activity-diagram set)**|-|
+
+## Sustainability & ESG: manage GHG methodology and emission factors
+
+```mermaid
+flowchart LR
+  A(["Sustainability & ESG needs to create or update GHG methodology or emission factors"])
+  U1["UC-02: Manage GHG methodology & emission factors"]
+  Z(["GHG methodology or emission-factor configuration saved"])
+  A --> U1 --> Z
+```
+
+|Step|Use case|Activity diagram|Screens (fill in after Block 2)|
+|-|-|-|-|
+|1|UC-02 Manage GHG methodology & emission factors|`docs/activity/AD-UC-02.md` **(not present in current activity-diagram set)**|-|
+
+## Sustainability & ESG: view carbon traceability record
+
+```mermaid
+flowchart LR
+  A(["Sustainability & ESG needs to trace a shipped product batch"])
+  U1["UC-06: View carbon traceability record"]
+  Z(["Carbon traceability record displayed for review"])
+  A --> U1 --> Z
+```
+
+|Step|Use case|Activity diagram|Screens (fill in after Block 2)|
+|-|-|-|-|
+|1|UC-06 View carbon traceability record|`docs/activity/AD-UC-06.md`|-|
+
+## Production: access batch carbon intensity
+
+```mermaid
+flowchart LR
+  A(["Production needs the carbon intensity of a production batch"])
+  U1["UC-03: Access batch carbon intensity"]
+  Z(["Batch carbon intensity available for review"])
+  A --> U1 --> Z
+```
+
+|Step|Use case|Activity diagram|Screens (fill in after Block 2)|
+|-|-|-|-|
+|1|UC-03 Access batch carbon intensity|`docs/activity/AD-UC-03.md` **(not present in current activity-diagram set)**|-|
+
+## Export Sales & Marketing: calculate shipment-level PCF
+
+```mermaid
+flowchart LR
+  A(["Export Sales & Marketing needs the PCF of a shipment"])
+  U1["UC-04: Calculate shipment-level PCF"]
+  Z(["Shipment-level PCF calculated, stored, and displayed"])
+  A --> U1 --> Z
+```
+
+|Step|Use case|Activity diagram|Screens (fill in after Block 2)|
+|-|-|-|-|
+|1|UC-04 Calculate shipment-level PCF|`docs/activity/AD-UC-04.md`|-|
+
 ## System Admin: administer user access
 
 ```mermaid
