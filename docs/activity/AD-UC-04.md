@@ -14,8 +14,6 @@
 | Failure end state | No PCF is calculated; the system reports that required shipment, batch-intensity, or linkage data is missing. |
 | FRs covered | FR-01-05, FR-01-09 (new — reported to integrator, not yet in W1) |
 | Business rules applied | None supplied for UC-04. |
-| Version / status | v0.2 · Draft |
-| Author | EcoTrace Group B · individual reviewer/owner to assign |
 
 ## 1. Diagram
 
