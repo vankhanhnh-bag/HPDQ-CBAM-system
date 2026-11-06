@@ -15,7 +15,7 @@
 | Business rules applied | Input criteria validation; querying product profiles and CBAM costs; parallel calculation of PCF/data quality and carbon intensity/CBAM cost; overall scoring; ranking and assignment of Primary/Alternative flags. |
 | Version / status | v1.0 |
 | Author | Quan |
-    a2 --> stop1
+
 
 ```mermaid
 graph TB
@@ -63,4 +63,5 @@ graph TB
     j1 --> s7
     s7 --> s8
     s8 --> a2
+   a2 --> stop1
 ```
