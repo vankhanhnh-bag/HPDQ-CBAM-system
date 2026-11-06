@@ -12,8 +12,9 @@ The Customer Value Chain Analysis (CVCA) describes the stakeholders around EcoTr
 ## 1. Value chain (with the new system)
 
 ```mermaid
+
 flowchart LR
-  subgraph CUSTOMER["CUSTOMER — HÒA PHÁT GANG THÉP"]
+  subgraph CUSTOMER["CUSTOMER — HÒA PHÁT DUNG QUẤT"]
     direction TB
     EX["HPDQ Executive<br/>Board"]
     ESG["Sustainability &<br/>ESG Department"]
@@ -29,7 +30,6 @@ flowchart LR
   subgraph PARTNERS["PARTNERS"]
     direction TB
     BSI["BSI<br/>(Verification / Assurance)"]
-    SAP["SAP S/4HANA"]
     LOG["Hoa Phat Logistics<br/>(Consignment Data)"]
   end
 
@@ -66,9 +66,6 @@ flowchart LR
   SYS -->|"Audit, Verification"| BSI
   BSI -->|"ISO assurance, EPD"| SYS
 
-  SAP -->|"SAP / ERP data, IT Request"| SYS
-  SYS -->|"System Integration, IT Assurance"| SAP
-
   SYS -->|"Shipment query"| LOG
   LOG -->|"Batch-shipment link"| SYS
 
@@ -79,7 +76,7 @@ flowchart LR
 
   class EX,ESG,TECH,PROD,FIN,SALES,PROC company;
   class SYS system;
-  class BSI,SAP,LOG partner;
+  class BSI,LOG partner;
   class EU,DOM actor;
 
   style CUSTOMER fill:#ffffff,stroke:#111111,stroke-width:1.5px,color:#111111
