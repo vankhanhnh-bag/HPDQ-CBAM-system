@@ -1,3 +1,4 @@
+```mermaid
 swimlane-beta TB
 subgraph USER["Sustainability & ESG user"]
 start@{ shape: sm-circ }
@@ -30,3 +31,4 @@ d3 -->|"[Yes]"| s5 --> s6
 s6 --> db1
 s6 --> s7 --> db2
 s7 --> a2 --> stop1
+```
