@@ -1,3 +1,10 @@
+| Field | Value |
+|---|---|
+| Use case | UC-01 Submit supplier & raw material carbon data (W1) |
+| Primary actor | Procurement Department |
+| Version | v1.0 |
+| FRs | FR-01-01 (Must) |
+
 ```mermaid
 sequenceDiagram
     autonumber
