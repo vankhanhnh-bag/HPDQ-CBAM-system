@@ -1,3 +1,10 @@
+| Field | Value |
+|---|---|
+| Use case | UC-02 Manage GHG methodology & emission factors[cite: 6] |
+| Primary actor | Sustainability & ESG User[cite: 6] |
+| Version | v1.0 |
+| FRs | FR-01-02 (Must)[cite: 6] |
+
 ```mermaid
 sequenceDiagram
     autonumber
