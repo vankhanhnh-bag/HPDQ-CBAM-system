@@ -15,6 +15,24 @@ flowchart LR
 
 The sign-in flow ends at the destination the user originally requested. The destination may belong to another EcoTrace feature and is therefore outside this Feature 4 screen list.
 
+## 7. ...
+
+```mermaid
+flowchart LR
+  entry(["Entry: clicks EcoTrace link from Hòa Phát website, or opens a bookmarked URL"])
+  S00_01["S-F00-01<br>Sign in"]
+  S02_01["S-F02-01<br>CBAM Estimation & Analysis"]
+
+  entry --> S00_01
+  S00_01 -->|"signed in"| S02_01
+  S02_01 -->|"selects Order No."| S02_01
+  S02_01 -->|"taps Calculate"| S02_01
+  S02_01 -->|"taps View Assumptions<br>[opens M-F02-02]"| S02_01
+  S02_01 -->|"taps Share<br>[opens M-F02-01]"| S02_01
+  S02_01 -->|"confirms Share in dialog"| S02_01
+  S02_01 -->|"taps Download Report<br>[file downloads]"| S02_01
+```
+
 ## 10. Customers
 
 ```mermaid
