@@ -157,9 +157,6 @@ flowchart LR
 |2 (if required)|UC-04 Calculate shipment-level PCF|`docs/activity/AD-UC-04.md`|`S-F01-01`|
 |3|UC-07 Estimate & analyze CBAM exposure for shipment|`docs/activity/AD-UC-07.md`|`S-F02-01`|
 
-> **Data dependency:** UC-04 prepares and stores shipment-level PCF when it is missing. UC-07 loads the stored shipment record and verified carbon-intensity data (FR-02-01), validates all required CBAM inputs (FR-02-02), and performs its own embedded-emissions calculation (FR-02-03). The source requirements do not establish that lifecycle PCF and CBAM embedded emissions are identical. UC-04 is an optional prior user action, not an automatic step within every UC-07 estimate.
-
-
 ## Compliance / Product Owner
 
 ### Manage CBAM regulatory rules and parameters
@@ -177,8 +174,6 @@ flowchart LR
 |-|-|-|-|
 |1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
 |2|UC-08 Manage CBAM regulatory rules & parameters|`docs/activity/AD-UC-08.md`|`S-F02-02`, `S-F02-03` (when creating/editing)|
-
-> In UC-08, `S-F02-02` is the settings view and `S-F02-03` is the rule-set editor. `M-F02-03` is an activation-confirmation modal, not an additional use case or screen.
 
 ## System Admin
 
