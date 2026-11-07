@@ -77,8 +77,10 @@ flowchart LR
 
 |Usage-flow arrow|Path on this diagram|
 |-|-|
+|UC-09 to UC-09|Customers: `S-F00-01` → `S-F03-01` (authenticated; procurement permission granted) → `S-F03-02` (submits filter criteria and clicks compare). |
 |UC-10 to UC-11|System Admin: `S-F00-01` → `S-F04-01` (authenticated; permission granted).|
 |UC-10 to UC-12|System Admin / Auditor: `S-F00-01` → `S-F04-02` (authenticated; audit-view permission granted).|
 |UC-11 to UC-12|System Admin: `S-F04-01` → `S-F04-02` (opens Audit Logs).|
+
 
 
