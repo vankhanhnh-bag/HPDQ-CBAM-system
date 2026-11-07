@@ -15,7 +15,7 @@
 | FRs covered | UC-08 Must: **FR-02-14, FR-02-15, FR-02-16, FR-02-17 (4/4)**; shared Must: **FR-04-03, FR-04-04**. |
 | Business rules applied | Mandatory values, valid ranges, nonconflicting effective periods (FR-02-16); effective-date versioning, prior-version traceability (FR-02-17). No separately numbered BRs provided. |
 | Version / status | v0.2 · Revised draft; Mermaid Live and peer review pending |
-| Author | EcoTrace Group G · owner to assign |
+| Author | Huyền My |
 
 ## 1. Diagram
 
