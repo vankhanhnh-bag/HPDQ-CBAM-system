@@ -1,4 +1,4 @@
-# Activity Diagram: AD-UC-08 Manage CBAM regulatory rules & parameters (revised)
+# Activity Diagram: AD-UC-08 Manage CBAM regulatory rules & parameters
 
 | Field | Value |
 |---|---|
