@@ -140,6 +140,10 @@ flowchart LR
   Z(["Relevant audit activity reviewed"])
   A --> U1 --> U2 --> Z
 ```
+|Step|Use case|Activity diagram|Screens (fill in after Block 2)|
+|-|-|-|-|
+|1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
+|2|UC-12 Review Audit Logs (working title)|`AD-UC-12.md` **(not present in current activity-diagram set)**|`S-F04-02`|
 
 ## Customer: compare and select green steel options
 
@@ -151,11 +155,11 @@ flowchart LR
   Z(["Optimal green steel option selected and recommended product reviewed"])
   A --> U1 --> U2 --> Z
 ```
-
 |Step|Use case|Activity diagram|Screens (fill in after Block 2)|
 |-|-|-|-|
 |1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
-|2|UC-12 Review Audit Logs (working title)|`AD-UC-12.md` **(not present in current activity-diagram set)**|`S-F04-02`|
+|2|UC-09 Compare and recommend green steel options|`AD-UC-09.md`|`S-F03-01, S-F03-02`|
+
 
 ## Use cases without a flow (ai làm thì xóa dòng mặc định và ghi chú này)
 
