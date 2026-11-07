@@ -133,23 +133,33 @@ flowchart LR
 |-|-|-|-|
 |1|UC-04 Calculate shipment-level PCF|`docs/activity/AD-UC-04.md`|-|
 
+
 ### Estimate CBAM exposure for an export shipment
 
 ```mermaid
 flowchart LR
   A(["Export Sales & Marketing needs to estimate CBAM cost exposure for an export shipment"])
-  U1["UC-10: Authenticate and Sign In"]
-  U2["UC-07: Estimate & analyze CBAM exposure for shipment"]
-  Z(["Shipment CBAM estimate and calculation breakdown available for quotation or review"])
-  A --> U1 --> U2 --> Z
+  U10["UC-10: Authenticate and Sign In"]
+  D{"Valid shipment-level PCF data already available?"}
+  U04["UC-04: Calculate shipment-level PCF"]
+  U07["UC-07: Estimate & analyze CBAM exposure for shipment"]
+  Z(["CBAM estimate and calculation breakdown available for quotation or review"])
+
+  A --> U10 --> D
+  D -->|"Yes: use existing PCF data"| U07
+  D -->|"No: PCF calculation required"| U04
+  U04 -->|"PCF successfully calculated and stored"| U07
+  U07 --> Z
 ```
 
 |Step|Use case|Activity diagram|Screens (fill in after Block 2)|
 |-|-|-|-|
 |1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
-|2|UC-07 Estimate & analyze CBAM exposure for shipment|`docs/activity/AD-UC-07.md`|`S-F02-01`|
+|2 (if required)|UC-04 Calculate shipment-level PCF|`docs/activity/AD-UC-04.md`|Not assigned in current Screen List|
+|3|UC-07 Estimate & analyze CBAM exposure for shipment|`docs/activity/AD-UC-07.md`|`S-F02-01`|
 
-> UC-04 and UC-07 are separate user goals. UC-07 uses stored shipment and verified carbon inputs; the available specifications do not require a fresh UC-04 calculation for every estimate.
+> **Dependency:** UC-07 requires valid shipment and verified carbon/PCF data. UC-04 calculates and stores shipment-level PCF. When valid PCF data already exists, the user can proceed directly to UC-07 without recalculating it. Otherwise, UC-04 may be performed first to prepare the required PCF data. This is a conditional user journey, not an automatic system invocation of UC-04. If required inputs remain missing or invalid, UC-07 blocks estimation and displays validation reasons (FR-02-02).
+
 
 ## Compliance / Product Owner
 
