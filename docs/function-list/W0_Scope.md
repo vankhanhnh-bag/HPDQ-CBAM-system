@@ -1,6 +1,6 @@
 # W0 — Establish scope and split into features
 
-> **Input**: The Use Case Diagram, the CVCA and the Context Diagram, updated after the user meeting. Every diagram element must already carry an ID.
+> **Input**: The [Use Case Diagram](docs/use-case/use-case-diagram.md), the [CVCA](docs/context/cvca.md) and the [Context Diagram](docs/context/context_diagram.md), updated after the user meeting. Every diagram element must already carry an ID.
 >
 > **Output**: (a) a complete use-case inventory, (b) a small set of features, each a folder under specs/, (c) an explicit Won't-have list, (d) the data functions the system maintains or reads. Feature IDs feed column A of W1.
 >
