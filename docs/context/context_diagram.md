@@ -6,7 +6,7 @@
 |System Name|`HPDQ Carbon Management \& Reporting System`|
 |Primary Purpose|Map system boundaries, external actors, and high-level data flows across internal departments and external partners.|
 |Version / status|v0.1 · Draft|
-|Author|Team Sample|
+|Built from|[CVCA](docs/context/cvca.md)|
 
 ## Diagram
 
