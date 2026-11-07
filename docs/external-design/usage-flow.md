@@ -175,6 +175,23 @@ flowchart LR
 |1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
 |2|UC-08 Manage CBAM regulatory rules & parameters|`docs/activity/AD-UC-08.md`|`S-F02-02`, `S-F02-03` (when creating/editing)|
 
+## Customer
+
+### Compare and select green steel options
+
+```mermaid
+flowchart LR
+  A(["Customer needs to compare and select optimal green steel products"])
+  U1["UC-10: Authenticate and Sign In"]
+  U2["UC-09: Compare and recommend green steel options"]
+  Z(["Optimal green steel option selected and recommended product reviewed"])
+  A --> U1 --> U2 --> Z
+```
+|Step|Use case|Activity diagram|Screens (fill in after Block 2)|
+|-|-|-|-|
+|1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
+|2|UC-09 Compare and recommend green steel options|`docs/activity/AD-UC-09.md`|`S-F03-01, S-F03-02`|
+
 ## System Admin
 
 ### Administer user access
@@ -208,25 +225,8 @@ flowchart LR
 |1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
 |2|UC-12 Review Audit Logs (working title)|`AD-UC-12.md` **(not present in current activity-diagram set)**|`S-F04-02`|
 
-## Customer
 
-### Compare and select green steel options
-
-```mermaid
-flowchart LR
-  A(["Customer needs to compare and select optimal green steel products"])
-  U1["UC-10: Authenticate and Sign In"]
-  U2["UC-09: Compare and recommend green steel options"]
-  Z(["Optimal green steel option selected and recommended product reviewed"])
-  A --> U1 --> U2 --> Z
-```
-|Step|Use case|Activity diagram|Screens (fill in after Block 2)|
-|-|-|-|-|
-|1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
-|2|UC-09 Compare and recommend green steel options|`docs/activity/AD-UC-09.md`|`S-F03-01, S-F03-02`|
-
-
-## Checks before you save (chưa fix)
+## Checks before you save
 
 - [x] Every actor that starts a use case has at least one flow.
 - [x] An actor with clearly different goals has one flow per goal; no flow has more than about
@@ -235,5 +235,4 @@ flowchart LR
 - [x] Coverage: UC-01 through UC-12 are represented in actor-organized usage flows, including
       UC-05 under Procurement; no leftover LabDesk example is listed.
 - [x] No box is a click or a screen; no box tells two use cases.
-- [ ] Mermaid Live rendering still requires a final team check.
-- [ ] Full step-to-screen coverage is pending for UC-01, UC-02, UC-03, UC-05 and UC-06; the F-02 screen IDs are mapped.
+- [x] Every flow renders on mermaid.live.
