@@ -15,6 +15,65 @@ flowchart LR
 
 The sign-in flow ends at the destination the user originally requested. The destination may belong to another EcoTrace feature and is therefore outside this Feature 4 screen list.
 
+## 2. Production
+
+```mermaid
+flowchart LR
+  entry(["Entry: Production Department user opens EcoTrace workspace while signed out"])
+  S00_01["S-F00-01<br>Sign In"]
+  S01_04["S-F01-04<br>Batch Carbon Intensity"]
+  workspace(["EcoTrace workspace<br>(outside this F-01 screen list)"])
+
+  entry --> S00_01
+  S00_01 -->|"authenticated; Production permission granted"| S01_04
+  S01_04 -->|"selects a production batch; intensity and sources displayed"| S01_04
+  S01_04 -->|"returns to workspace"| workspace
+```
+
+The batch carbon intensity is calculated in the background (FR-01-03); `S-F01-04` only displays it.
+
+## 3. Procurement & Raw Materials
+
+```mermaid
+flowchart LR
+  entry(["Entry: Procurement & Raw Materials user opens EcoTrace workspace while signed out"])
+  S00_01["S-F00-01<br>Sign In"]
+  S01_02["S-F01-02<br>Supplier & Raw Material Carbon Data Entry"]
+  S01_05["S-F01-05<br>Scope 3 Assessment"]
+  workspace(["EcoTrace workspace<br>(outside this F-01 screen list)"])
+
+  entry --> S00_01
+  S00_01 -->|"authenticated; Procurement permission granted"| S01_02
+  S00_01 -->|"authenticated; opens Scope 3 assessment"| S01_05
+  S01_02 -->|"submits supplier delivery data; record saved"| S01_02
+  S01_02 -->|"validation fails; reasons displayed"| S01_02
+  S01_05 -->|"selects supplier or material category and requests assessment"| S01_05
+  S01_02 -->|"returns to workspace"| workspace
+  S01_05 -->|"returns to workspace"| workspace
+```
+
+## 4. Sustainability & ESG
+
+```mermaid
+flowchart LR
+  entry(["Entry: Sustainability & ESG user opens EcoTrace workspace while signed out"])
+  S00_01["S-F00-01<br>Sign In"]
+  S01_03["S-F01-03<br>GHG Methodology & Emission Factor Library"]
+  S01_06["S-F01-06<br>Carbon Traceability Record"]
+  workspace(["EcoTrace workspace<br>(outside this F-01 screen list)"])
+
+  entry --> S00_01
+  S00_01 -->|"authenticated; Sustainability & ESG permission granted"| S01_03
+  S00_01 -->|"authenticated; opens traceability record"| S01_06
+  S01_03 -->|"adds or edits a methodology or emission factor; new version saved"| S01_03
+  S01_03 -->|"validation fails; reasons displayed"| S01_03
+  S01_06 -->|"selects a shipped product batch; full traceability chain displayed"| S01_06
+  S01_03 -->|"returns to workspace"| workspace
+  S01_06 -->|"returns to workspace"| workspace
+```
+
+The traceability links between raw material, production batch and shipment are created in the background when records are saved (FR-01-07); `S-F01-06` only displays them.
+
 ## 7. Export Sales & Marketing / Procurement & Raw Materials
 
 ```mermaid
@@ -36,6 +95,8 @@ flowchart LR
   S02_01 -->|"confirms Share in dialog"| S02_01
   S02_01 -->|"taps Download Report<br>[file downloads]"| S02_01
 ```
+
+UC-04 (`S-F01-01`) is an optional preparation step for Export Sales & Marketing when valid shipment PCF is not yet available. With existing verified carbon/PCF inputs, Export Sales & Marketing or Procurement & Raw Materials proceeds directly to UC-07 (`S-F02-01`).
 
 ## 10. Customers
 
@@ -131,6 +192,11 @@ flowchart LR
 |UC-10 to UC-11|System Admin: `S-F00-01` → `S-F04-01` (authenticated; permission granted).|
 |UC-10 to UC-12|System Admin / Auditor: `S-F00-01` → `S-F04-02` (authenticated; audit-view permission granted).|
 |UC-11 to UC-12|System Admin: `S-F04-01` → `S-F04-02` (opens Audit Logs).|
+|UC-10 to UC-01|Procurement & Raw Materials: `S-F00-01` → `S-F01-02` (authenticated; Procurement permission granted).|
+|UC-10 to UC-02|Sustainability & ESG: `S-F00-01` → `S-F01-03` (authenticated; Sustainability & ESG permission granted).|
+|UC-10 to UC-03|Production: `S-F00-01` → `S-F01-04` (authenticated; Production permission granted).|
+|UC-10 to UC-05|Procurement & Raw Materials: `S-F00-01` → `S-F01-05` (authenticated; opens Scope 3 assessment).|
+|UC-10 to UC-06|Sustainability & ESG: `S-F00-01` → `S-F01-06` (authenticated; opens traceability record).|
 |UC-10 to UC-04|Export Sales & Marketing: `S-F00-01` → `S-F01-01` (signed in; opens shipment-level PCF calculation).|
 |UC-04 to UC-07 (if PCF required)|Export Sales & Marketing: `S-F01-01` → `S-F02-01` (PCF calculated and stored; user proceeds to CBAM estimation).|
 |UC-10 to UC-07|Export Sales & Marketing / Procurement & Raw Materials: `S-F00-01` → `S-F02-01` (signed in; stored shipment PCF available; UC-07 validates verified carbon intensity and other required inputs).|
