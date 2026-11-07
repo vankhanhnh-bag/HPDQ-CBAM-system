@@ -141,6 +141,17 @@ flowchart LR
   A --> U1 --> U2 --> Z
 ```
 
+## Customer: compare and select green steel options
+
+```mermaid
+flowchart LR
+  A(["Customer needs to compare and select optimal green steel products"])
+  U1["UC-10: Authenticate and Sign In"]
+  U2["UC-09: Compare and recommend green steel options"]
+  Z(["Optimal green steel option selected and recommended product reviewed"])
+  A --> U1 --> U2 --> Z
+```
+
 |Step|Use case|Activity diagram|Screens (fill in after Block 2)|
 |-|-|-|-|
 |1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
