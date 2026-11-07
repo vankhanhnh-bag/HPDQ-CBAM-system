@@ -37,8 +37,6 @@ flowchart LR
   S02_01 -->|"taps Download Report<br>[file downloads]"| S02_01
 ```
 
-UC-04 (`S-F01-01`) prepares missing shipment-level PCF for Export Sales & Marketing. UC-07 (`S-F02-01`) loads the stored shipment record and verified carbon-intensity inputs (FR-02-01), validates eligibility and required fields (FR-02-02), and calculates CBAM embedded emissions separately (FR-02-03). The documents do not equate shipment PCF with CBAM embedded emissions. Procurement uses UC-07 with pre-existing valid shipment/carbon data; UC-04 is not an automatic step.
-
 ## 10. Customers
 
 ```mermaid
