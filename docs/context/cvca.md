@@ -9,7 +9,7 @@ The Customer Value Chain Analysis (CVCA) describes the stakeholders around EcoTr
 | Project | HPDQ Carbon Management & Reporting System (EcoTrace) |
 | Version | v2 |
 | Source | DBIZ I CVCA |
-| Next | [Context Diagram](context-diagram.md) |
+| Next | [Context Diagram](docs/context/context_diagram.md) |
 
 ## 1. Value chain (with the new system)
 
