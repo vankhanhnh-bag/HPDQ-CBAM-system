@@ -15,7 +15,7 @@
 | FRs covered | FR-04-01, FR-04-03 |
 | Business rules applied | FR-04-01 valid-credential condition; FR-04-03 RBAC gate for protected resources. No separate BR IDs supplied. |
 | Version / status | v0.1 · Draft (source reconciliation pending) |
-| Author | EcoTrace Group G · individual reviewer/owner to assign |
+| Author | Vân Khanh |
 
 ## 1. Diagram
 
