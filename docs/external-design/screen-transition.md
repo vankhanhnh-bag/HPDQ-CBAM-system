@@ -15,16 +15,20 @@ flowchart LR
 
 The sign-in flow ends at the destination the user originally requested. The destination may belong to another EcoTrace feature and is therefore outside this Feature 4 screen list.
 
-## 7. ...
+## 7. Export Sales & Marketing / Procurement & Raw Materials
 
 ```mermaid
 flowchart LR
   entry(["Entry: clicks EcoTrace link from Hòa Phát website, or opens a bookmarked URL"])
   S00_01["S-F00-01<br>Sign in"]
   S02_01["S-F02-01<br>CBAM Estimation & Analysis"]
+  S01_01["S-F01-01<br>Shipment-level PCF Calculation"]
 
   entry --> S00_01
-  S00_01 -->|"signed in"| S02_01
+  S00_01 -->|"signed in; verified PCF already available"| S02_01
+  S00_01 -->|"Export Sales: opens PCF calculation if required"| S01_01
+  S02_01 -->|"Export Sales: PCF missing; opens PCF calculation"| S01_01
+  S01_01 -->|"PCF calculated and stored; continue to CBAM"| S02_01
   S02_01 -->|"selects Order No."| S02_01
   S02_01 -->|"taps Calculate"| S02_01
   S02_01 -->|"taps View Assumptions<br>[opens M-F02-02]"| S02_01
@@ -32,6 +36,8 @@ flowchart LR
   S02_01 -->|"confirms Share in dialog"| S02_01
   S02_01 -->|"taps Download Report<br>[file downloads]"| S02_01
 ```
+
+UC-04 (`S-F01-01`) is an optional preparation step for Export Sales & Marketing when valid shipment PCF is not yet available. With existing verified carbon/PCF inputs, Export Sales & Marketing or Procurement & Raw Materials proceeds directly to UC-07 (`S-F02-01`).
 
 ## 10. Customers
 
