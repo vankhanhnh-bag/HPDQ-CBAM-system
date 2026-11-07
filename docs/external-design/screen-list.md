@@ -5,7 +5,6 @@ Screen ID pattern: `S-<feature>-<nn>`. Shared screens use `S-F00-<nn>`.
 
 | Screen ID | Screen name | Actor | Feature | Shown when (purpose) | Entry points | Use cases / FRs served | Priority | Screen spec |
 |---|---|---|---|---|---|---|---|---|
-| S-F00-01 | Sign in | All Users | F-00 | A user who is not authenticated opens EcoTrace or requests a protected destination. | EcoTrace sign-in entry; redirect from a protected page when no valid session exists. | UC-10 Authenticate and Sign In; FR-04-01; shared access/authorization gate FR-04-03. | Must | `screens/screen-spec-S-F00-01.md` |
 | S-F01-01 | Shipment-level PCF Calculation | Export Sales & Marketing | F-01 | User selects a shipment to calculate, store and review its shipment-level product carbon footprint from batch carbon intensities and applicable logistics emissions. | EcoTrace workspace > Shipment PCF; may also be opened when preparing missing PCF data for CBAM estimation. | UC-04 Calculate shipment-level PCF; FR-01-05 | Must | `screens/screen-spec-S-F01-01.md` |
 | S-F01-02 | Supplier & Raw Material Carbon Data Entry | Procurement & Raw Materials Dep. | F-01 | User needs to submit a supplier delivery together with the supplier's raw material carbon data. | EcoTrace workspace > Supplier Carbon Data. | UC-01 Submit supplier & raw material carbon data; FR-01-01 | Must | `screens/screen-spec-S-F01-02.md` |
 | S-F01-03 | GHG Methodology & Emission Factor Library | Sustainability & ESG Dep. | F-01 | User needs to add or update a GHG methodology version or an emission factor used in carbon calculations. | EcoTrace workspace > GHG Methodology & Emission Factors. | UC-02 Manage GHG methodology & emission factors; FR-01-02 | Must | `screens/screen-spec-S-F01-03.md` |
@@ -17,11 +16,12 @@ Screen ID pattern: `S-<feature>-<nn>`. Shared screens use `S-F00-<nn>`.
 | S-F02-03 | CBAM Regulatory Rule Set Editor | Compliance / Product Owner | F-02 | User is creating a new rule set, or editing an existing draft, before validating and activating it | "Create new rule set" button on S-F02-02; "Edit" on a draft row in S-F02-02 | UC-08; FR-02-15, FR-02-16, FR-02-17 | Must | `screens/screen-spec-S-F02-03.md` |
 | S-F03-01 | Green Steel Filter & Comparison Criteria | Customers / Procurement | F-03 | When the user selects criteria (category, steel grade, destination) to filter products | Main Menu / Home Page | UC-09 (FR-03-01, FR-03-02) | Must | `screens/screen-spec-S-F03-01.md` |
 | S-F03-02 | Green Steel Comparison & Recommendation Board | Customers / Procurement | F-03 | When the system has calculated scores and returned comparison results & optimal product recommendations |From S-F03-01 after clicking filter/compare | UC-09 (FR-03-03, FR-03-04) | Must | `screens/screen-spec-S-F03-02.md` |
-| S-F04-01 | User & Access Management | System Admin |F-04|A System Admin opens the administration area to perform the user/access-administration use case (UC-11).|After successful sign-in and authorization; Platform / Access menu.|UC-11 (working label: Manage User Access); FR-04-02 and FR-04-03.| Must |`screens/screen-spec-S-F04-01.md`|
-|S-F04-02|Audit Log Viewer|System Admin; Auditor|F-04|A System Admin or Auditor opens the audit area to review system activity recorded by EcoTrace (UC-12).|After successful sign-in and authorization; Platform / Audit Logs menu.|UC-12 (working label: Review Audit Logs); FR-04-04 and FR-04-03.|Must|`screens/screen-spec-S-F04-02.md`|
+| S-F04-01 | Sign in | All Users | F-04 | A user who is not authenticated opens EcoTrace or requests a protected destination. | EcoTrace sign-in entry; redirect from a protected page when no valid session exists. | UC-10 Authenticate and Sign In; FR-04-01; shared access/authorization gate FR-04-03. | Must | `screens/screen-spec-S-F04-01.md` |
+| S-F04-02 | User & Access Management | System Admin | F-04 | A System Admin opens the administration area to perform the user/access-administration use case (UC-11).| After successful sign-in and authorization; Platform / Access menu.|UC-11 (working label: Manage User Access); FR-04-02 and FR-04-03. | Must |`screens/screen-spec-S-F04-02.md`|
+| S-F04-03 | Audit Log Viewer | System Admin; Auditor| F-04 | A System Admin or Auditor opens the audit area to review system activity recorded by EcoTrace (UC-12). | After successful sign-in and authorization; Platform / Audit Logs menu.|UC-12 (working label: Review Audit Logs); FR-04-04 and FR-04-03. | Must| `screens/screen-spec-S-F04-03.md`|
 
 
-## Modals and overlays (ai điền thêm thì thêm dòng)
+## Modals and overlays
 
 | Modal | Opened from screen | Purpose |
 |---|---|---|
@@ -34,10 +34,10 @@ Screen ID pattern: `S-<feature>-<nn>`. Shared screens use `S-F00-<nn>`.
 
 | Candidate | Why it is not a screen |
 |---|---|
-| "Invalid credentials" | Error state of S-F00-01 (Sign In) |
-| "Access denied" | Access-control result/state of the requested screen (FR-04-03); it is not a separate screen |
-| "Audit log access denied" | Error/authorization state of S-F04-02 (Audit Log Viewer) |
 | "Comparison loading state" | Loading state while fetching product profiles and calculating scores from the backend|
 | "Data entry validation errors" | Error state of S-F01-02 and S-F01-03 (FR-01-01, FR-01-02) |
 | "Batch carbon intensity calculation" | Runs in the background (FR-01-03); the result is shown on S-F01-04 |
 | "Traceability linkage maintenance" | Runs in the background when records are created (FR-01-07); the result is shown on S-F01-06 |
+| "Invalid credentials" | Error state of S-F04-01 (Sign In) |
+| "Access denied" | Access-control result/state of the requested screen (FR-04-03); it is not a separate screen |
+| "Audit log access denied" | Error/authorization state of S-F04-03 (Audit Log Viewer) |
