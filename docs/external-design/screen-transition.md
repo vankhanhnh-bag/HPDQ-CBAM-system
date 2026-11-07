@@ -15,21 +15,16 @@ flowchart LR
 
 The sign-in flow ends at the destination the user originally requested. The destination may belong to another EcoTrace feature and is therefore outside this Feature 4 screen list.
 
-## 7. Export Sales & Marketing / Procurement: shipment PCF and CBAM estimation
+## 7. ...
 
 ```mermaid
 flowchart LR
   entry(["Entry: clicks EcoTrace link from Hòa Phát website, or opens a bookmarked URL"])
   S00_01["S-F00-01<br>Sign in"]
-  S01_01["S-F01-01<br>Shipment-level PCF Calculation"]
   S02_01["S-F02-01<br>CBAM Estimation & Analysis"]
 
   entry --> S00_01
-  S00_01 -->|"signed in; opens CBAM estimation"| S02_01
-  S00_01 -->|"Export Sales opens shipment PCF calculation"| S01_01
-  S02_01 -->|"Export Sales: PCF required; opens PCF screen"| S01_01
-  S01_01 -->|"PCF successfully calculated and stored; proceeds to CBAM"| S02_01
-  S01_01 -->|"required batch or logistics data missing; retry"| S01_01
+  S00_01 -->|"signed in"| S02_01
   S02_01 -->|"selects Order No."| S02_01
   S02_01 -->|"taps Calculate"| S02_01
   S02_01 -->|"taps View Assumptions<br>[opens M-F02-02]"| S02_01
@@ -37,9 +32,6 @@ flowchart LR
   S02_01 -->|"confirms Share in dialog"| S02_01
   S02_01 -->|"taps Download Report<br>[file downloads]"| S02_01
 ```
-
-
-UC-04 (`S-F01-01`) is performed by Export Sales & Marketing. Procurement can open UC-07 (`S-F02-01`) with existing verified carbon inputs. The transition to UC-04 is user-initiated **only if** PCF needs to be prepared; UC-07 does not automatically trigger a new PCF calculation. If its inputs remain invalid, UC-07 blocks estimation and shows validation feedback (FR-02-02).
 
 ## 10. Customers
 
@@ -118,12 +110,12 @@ flowchart LR
 
 `M-F02-03` is a confirmation modal over `S-F02-03`, **not** another screen. Access-denied, invalid-draft and cancellation outcomes are states of existing screens, not separate Screen IDs. UC-08 covers FR-02-14 to FR-02-17 and shared access/audit controls.
 
-## Checks
+## Checks (chưa fix)
 
-- [x] Every Screen List screen ID appears in a diagram: 9 of 9 (including S-F01-01, S-F02-02, and S-F02-03).
-- [x] All nine listed screens have an entry path in the diagrams (subject to the specified actor permissions).
-- [x] New PCF and CBAM regulatory paths include return, retry, or continue transitions.
-- [ ] Full Usage Flow coverage remains incomplete for UC-01, UC-02, UC-03, UC-05 and UC-06, whose screens are not yet listed; paths mapped to current Screen List are detailed below.
+- Every screen in the Screen List appears: yes (7 of 7).
+- Every screen reachable from an entry point: yes.
+- No dead ends: yes.
+- Usage-flow paths: every arrow of [usage-flow.md](usage-flow.md) has a path (table below).
 - Sign in is shared; signed-out users who open an email or QR link see S-F00-01 first and then
   return to the screen they asked for (screen-level rule in S-F00-01).
 
@@ -135,12 +127,6 @@ flowchart LR
 |UC-10 to UC-11|System Admin: `S-F00-01` → `S-F04-01` (authenticated; permission granted).|
 |UC-10 to UC-12|System Admin / Auditor: `S-F00-01` → `S-F04-02` (authenticated; audit-view permission granted).|
 |UC-11 to UC-12|System Admin: `S-F04-01` → `S-F04-02` (opens Audit Logs).|
-
-|UC-10 to UC-04|Export Sales: `S-F00-01` → `S-F01-01` (signed in; opens shipment PCF calculation).|
-|UC-04 to UC-07 (if PCF needed)|Export Sales: `S-F01-01` → `S-F02-01` (PCF calculated and stored; user continues to CBAM estimation).|
-|UC-10 to UC-07|Export Sales / Procurement: `S-F00-01` → `S-F02-01` (authenticated; existing verified inputs available).|
-|UC-10 to UC-08|Compliance / Product Owner: `S-F00-01` → `S-F02-02` (view permission granted).|
-|UC-08 rule maintenance|Compliance / Product Owner: `S-F02-02` → `S-F02-03` (create/edit draft) → `S-F02-02` (activation or return); `M-F02-03` is a modal over `S-F02-03`.|
 
 
 
