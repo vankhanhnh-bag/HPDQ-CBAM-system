@@ -15,6 +15,23 @@ flowchart LR
 
 The sign-in flow ends at the destination the user originally requested. The destination may belong to another EcoTrace feature and is therefore outside this Feature 4 screen list.
 
+## 10. Customers
+
+```mermaid
+flowchart LR
+  entry(["Entry: Procurement user opens EcoTrace workspace or comparison link while signed out"])
+  S00_01["S-F00-01<br>Sign In"]
+  S_F03_01["S-F03-01<br>Green Steel Filter & Comparison Criteria"]
+  S_F03_02["S-F03-02<br>Green Steel Comparison & Recommendation Board"]
+  workspace(["EcoTrace workspace<br>(outside this F-03 screen list)"])
+
+  entry --> S00_01
+  S00_01 -->|"authenticated; procurement permission granted"| S_F03_01
+  S_F03_01 -->|"submits filter criteria and clicks compare"| S_F03_02
+  S_F03_02 -->|"modifies filters or goes back"| S_F03_01
+  S_F03_01 -->|"returns to workspace"| workspace
+  S_F03_02 -->|"returns to workspace"| workspace
+
 ## 11. System Admin
 
 ```mermaid
