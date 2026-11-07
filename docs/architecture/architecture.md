@@ -7,7 +7,7 @@ Decisions are recorded as ADRs (section 4).
 | Field | Value |
 |---|---|
 | Version | v1.1 |
-| Inputs | CVCA v1.0 (`cvca.md` (stakeholder requirements), `context_diagram.md`, `use_case_diagram.md` |
+| Inputs | [CVCA](docs/context/cvca.md) (stakeholder requirements), [Context Diagram](docs/context/context_diagram.md), [Use Case_diagram](docs/use-case/use-case-diagram.md) |
 
 ## 1. System requirements
 
