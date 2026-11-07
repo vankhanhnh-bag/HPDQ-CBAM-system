@@ -31,6 +31,7 @@ flowchart LR
   S_F03_02 -->|"modifies filters or goes back"| S_F03_01
   S_F03_01 -->|"returns to workspace"| workspace
   S_F03_02 -->|"returns to workspace"| workspace
+```
 
 ## 11. System Admin
 
