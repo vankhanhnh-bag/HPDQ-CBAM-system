@@ -158,8 +158,6 @@ flowchart LR
 |2 (if required)|UC-04 Calculate shipment-level PCF|`docs/activity/AD-UC-04.md`|`S-F01-01`|
 |3|UC-07 Estimate & analyze CBAM exposure for shipment|`docs/activity/AD-UC-07.md`|`S-F02-01`|
 
-> **Dependency:** UC-07 requires valid shipment and verified carbon/PCF data. UC-04 calculates and stores shipment-level PCF. When valid PCF data already exists, the user can proceed directly to UC-07 without recalculating it. Otherwise, UC-04 may be performed first to prepare the required PCF data. This is a conditional user journey, not an automatic system invocation of UC-04. If required inputs remain missing or invalid, UC-07 blocks estimation and displays validation reasons (FR-02-02).
-
 
 ## Compliance / Product Owner
 
