@@ -1,22 +1,17 @@
 # Usage Flow: EcoTrace
 
-> Worked example for teaching. Not a student submission and not a real product.
-
 | Field | Value |
 |---|---|
-|Product|EcoTrace|
-|Version|v0.1 (draft)|
-|Date|2026-11-06|
-| Sources | W0 Table 1 (use case inventory); Use Case Diagram; `docs/activity/activity-index.md` |
+| Product | EcoTrace (HPDQ Carbon Management & Reporting) |
+| Version | v0.2 (actor-organized integration draft) |
+| Date | 2026-11-07 |
+| Sources | `docs/function-list/W0_Scope.md`; Use Case Diagram; `docs/activity/`; `docs/external-design/screen-list.md` |
 
-## Before you draw: is Lesson 4 still true? (chưa fix)
+> Usage flows are grouped **by actor**, then **by distinct actor goal**. Each Mermaid box represents a Use Case, not a click or screen. The original group flows are retained; F-02 (UC-07 and UC-08) is added under the actors already present, rather than under a separate feature heading. Sign-in (UC-10) is a shared F-04 use case and only applies when the user needs to authenticate; an existing session proceeds to the destination UC.
 
-- [x] Every row of the Inputs check table in `docs/activity/activity-index.md` is "Done" or logged
-      as an open question. Row 3 (a scheduler for timed jobs) was closed in the Lesson 4
-      architecture with ADR-004; row 4 (split the "Booking flow" sequence) is still open and owned
-      by Owner A.
+## All Users
 
-## All Users: sign in to access EcoTrace
+### Sign in to access EcoTrace
 
 ```mermaid
 flowchart LR
@@ -30,7 +25,9 @@ flowchart LR
 |-|-|-|-|
 |1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
 
-## Procurement: record supplier and raw material carbon data
+## Procurement
+
+### Record supplier and raw material carbon data
 
 ```mermaid
 flowchart LR
@@ -44,7 +41,7 @@ flowchart LR
 |-|-|-|-|
 |1|UC-01 Submit supplier & raw material carbon data|`docs/activity/AD-UC-01.md`|-|
 
-## Procurement: assess Scope 3 emissions
+### Assess Scope 3 emissions
 
 ```mermaid
 flowchart LR
@@ -58,7 +55,25 @@ flowchart LR
 |-|-|-|-|
 |1|UC-05 Perform Scope 3 assessment|`docs/activity/AD-UC-05.md` **(not present in current activity-diagram set)**|-|
 
-## Sustainability & ESG: manage GHG methodology and emission factors
+### Estimate CBAM exposure for procurement decisions (Procurement & Raw Materials)
+
+```mermaid
+flowchart LR
+  A(["Procurement & Raw Materials needs to assess CBAM cost exposure for a shipment"])
+  U1["UC-10: Authenticate and Sign In"]
+  U2["UC-07: Estimate & analyze CBAM exposure for shipment"]
+  Z(["Shipment CBAM estimate and supporting breakdown available for procurement review"])
+  A --> U1 --> U2 --> Z
+```
+
+|Step|Use case|Activity diagram|Screens (fill in after Block 2)|
+|-|-|-|-|
+|1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
+|2|UC-07 Estimate & analyze CBAM exposure for shipment|`docs/activity/AD-UC-07.md`|`S-F02-01`|
+
+## Sustainability & ESG
+
+### Manage GHG methodology and emission factors
 
 ```mermaid
 flowchart LR
@@ -72,7 +87,7 @@ flowchart LR
 |-|-|-|-|
 |1|UC-02 Manage GHG methodology & emission factors|`docs/activity/AD-UC-02.md` **(not present in current activity-diagram set)**|-|
 
-## Sustainability & ESG: view carbon traceability record
+### View carbon traceability record
 
 ```mermaid
 flowchart LR
@@ -86,7 +101,9 @@ flowchart LR
 |-|-|-|-|
 |1|UC-06 View carbon traceability record|`docs/activity/AD-UC-06.md`|-|
 
-## Production: access batch carbon intensity
+## Production
+
+### Access batch carbon intensity
 
 ```mermaid
 flowchart LR
@@ -100,7 +117,9 @@ flowchart LR
 |-|-|-|-|
 |1|UC-03 Access batch carbon intensity|`docs/activity/AD-UC-03.md` **(not present in current activity-diagram set)**|-|
 
-## Export Sales & Marketing: calculate shipment-level PCF
+## Export Sales & Marketing
+
+### Calculate shipment-level PCF
 
 ```mermaid
 flowchart LR
@@ -114,7 +133,47 @@ flowchart LR
 |-|-|-|-|
 |1|UC-04 Calculate shipment-level PCF|`docs/activity/AD-UC-04.md`|-|
 
-## System Admin: administer user access
+### Estimate CBAM exposure for an export shipment
+
+```mermaid
+flowchart LR
+  A(["Export Sales & Marketing needs to estimate CBAM cost exposure for an export shipment"])
+  U1["UC-10: Authenticate and Sign In"]
+  U2["UC-07: Estimate & analyze CBAM exposure for shipment"]
+  Z(["Shipment CBAM estimate and calculation breakdown available for quotation or review"])
+  A --> U1 --> U2 --> Z
+```
+
+|Step|Use case|Activity diagram|Screens (fill in after Block 2)|
+|-|-|-|-|
+|1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
+|2|UC-07 Estimate & analyze CBAM exposure for shipment|`docs/activity/AD-UC-07.md`|`S-F02-01`|
+
+> UC-04 and UC-07 are separate user goals. UC-07 uses stored shipment and verified carbon inputs; the available specifications do not require a fresh UC-04 calculation for every estimate.
+
+## Compliance / Product Owner
+
+### Manage CBAM regulatory rules and parameters
+
+```mermaid
+flowchart LR
+  A(["Compliance / Product Owner needs to review or maintain CBAM regulatory rules"])
+  U1["UC-10: Authenticate and Sign In"]
+  U2["UC-08: Manage CBAM regulatory rules & parameters"]
+  Z(["Configuration reviewed, rule-set draft saved, or validated version activated or scheduled"])
+  A --> U1 --> U2 --> Z
+```
+
+|Step|Use case|Activity diagram|Screens (fill in after Block 2)|
+|-|-|-|-|
+|1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
+|2|UC-08 Manage CBAM regulatory rules & parameters|`docs/activity/AD-UC-08.md`|`S-F02-02`, `S-F02-03` (when creating/editing)|
+
+> In UC-08, `S-F02-02` is the settings view and `S-F02-03` is the rule-set editor. `M-F02-03` is an activation-confirmation modal, not an additional use case or screen.
+
+## System Admin
+
+### Administer user access
 
 ```mermaid
 flowchart LR
@@ -130,7 +189,7 @@ flowchart LR
 |1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
 |2|UC-11 Manage User Access (working title)|`AD-UC-11.md` **(not present in current activity-diagram set)**|`S-F04-01`|
 
-## System Admin / Auditor: review platform activity
+### Review platform activity (also available to Auditor)
 
 ```mermaid
 flowchart LR
@@ -145,7 +204,9 @@ flowchart LR
 |1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
 |2|UC-12 Review Audit Logs (working title)|`AD-UC-12.md` **(not present in current activity-diagram set)**|`S-F04-02`|
 
-## Customer: compare and select green steel options
+## Customer
+
+### Compare and select green steel options
 
 ```mermaid
 flowchart LR
