@@ -7,7 +7,7 @@
 | Feature | F-02 CBAM Compliance & Carbon Cost Estimation |
 | Primary actor | Compliance / Product Owner |
 | Lanes | Compliance / Product Owner · HPDQ Carbon Management & Reporting system |
-| Inputs (L3–L5) | EcoTrace Context Diagram; Use Case Diagram; W0 UC-08; W1 FR-02-14 through FR-02-17; shared Must FR-04-03 and FR-04-04; **SD-UC-08 not supplied**. |
+| Inputs (L3–L5) | EcoTrace Context Diagram; Use Case Diagram; W0 UC-08; W1 FR-02-14 through FR-02-17; shared Must FR-04-03 and FR-04-04; `docs/use-case/SD-UC-08.md` (available; cross-diagram alignment still requires review). |
 | Trigger | Authorized Compliance / Product Owner requests CBAM regulatory configuration. |
 | Preconditions | User has an authenticated session. Permission to read protected rule settings is checked at the start. Existing rules can be retrieved. |
 | Success end state(s) | Existing configuration is viewed without change; or draft is saved; or validated version is activated with an effective date and previous versions preserved. |
@@ -113,13 +113,13 @@ All values below are **test fixtures**, not actual regulatory thresholds or poli
 
 ## 5. Screens touched
 
-*Left to Lesson 8 as required by the workshop template.*
+*Screen IDs taken from the Lesson 8 Screen List; detailed Screen Specifications are not part of this update.*
 
 | Actor action | Screen ID |
 |---|---|
-| Request and review CBAM rule settings | TBD (Lesson 8) |
-| Edit parameters and source references | TBD (Lesson 8) |
-| Request activation and review validation/activation outcome | TBD (Lesson 8) |
+| Request and review CBAM rule settings | `S-F02-02` (CBAM Regulatory Settings) |
+| Edit parameters and source references | `S-F02-03` (CBAM Regulatory Rule Set Editor) |
+| Request activation and review validation/activation outcome | `S-F02-03` (validation and `M-F02-03` confirmation modal); `S-F02-02` (result/status) |
 
 ## 6. Open questions
 
@@ -131,7 +131,7 @@ All values below are **test fixtures**, not actual regulatory thresholds or poli
 | 4 | [NEEDS CLARIFICATION: Should a rejected draft be editable/retried within the same invocation?] | No | Rejected activation terminates; user can start another invocation. No undocumented loop. |
 | 5 | [NEEDS CLARIFICATION: Should unsuccessful authorization or activation attempts also be audited?] | No | Only completed system-altering actions are logged (FR-04-04). |
 | 6 | [NEEDS CLARIFICATION: Should the actor name Compliance / Product Owner be harmonized with the aggregated Internal Departments entity in the Context Diagram?] | No | Use-case actor label is retained; EcoTrace system lane matches Context Diagram. |
-| 7 | [NEEDS CLARIFICATION: Can SD-UC-08 be supplied to verify details against the Level-4 sequence?] | No for this AD | No UC-08 sequence was supplied; none was invented. |
+| 7 | [NEEDS ALIGNMENT: Should AD-UC-08 mirror the action-specific edit and activation permission checks shown in SD-UC-08?] | Yes for AD/SD consistency | `SD-UC-08.md` is available; the activity currently models entry permission, while the sequence also checks edit and activation permissions. Team review is still required. |
 
 ## 7. Verification log
 
@@ -144,7 +144,7 @@ All values below are **test fixtures**, not actual regulatory thresholds or poli
 | All system actions cite an existing Must FR | Static pass: 9 of 9 system actions | Assistant | 2026-10-26 |
 | Every UC-08 Must FR appears | **4 of 4** (FR-02-14 through FR-02-17), plus shared FR-04-03 and FR-04-04 | Assistant | 2026-10-26 |
 | Lane names match known Context/use-case actors | Static pass; role-label ambiguity recorded in Q6 | Assistant | 2026-10-26 |
-| Sequence cross-check | Not testable (SD-UC-08 not supplied) | Assistant | 2026-10-26 |
+| Sequence cross-check | SD-UC-08 exists; preliminary comparison found action-level RBAC detail requiring team reconciliation | Pending team review | 2026-11-07 |
 | Static critic | Checked for action IDs, FRs, guards, loops, fork/join; open questions logged | Assistant | 2026-10-26 |
 | Peer review | Pending | Assigned peer team | — |
 

@@ -25,9 +25,9 @@ flowchart LR
   S01_01["S-F01-01<br>Shipment-level PCF Calculation"]
 
   entry --> S00_01
-  S00_01 -->|"signed in; verified PCF already available"| S02_01
+  S00_01 -->|"signed in; stored shipment PCF available"| S02_01
   S00_01 -->|"Export Sales: opens PCF calculation if required"| S01_01
-  S02_01 -->|"Export Sales: PCF missing; opens PCF calculation"| S01_01
+  S02_01 -->|"Export Sales: shipment PCF missing; opens PCF calculation"| S01_01
   S01_01 -->|"PCF calculated and stored; continue to CBAM"| S02_01
   S02_01 -->|"selects Order No."| S02_01
   S02_01 -->|"taps Calculate"| S02_01
@@ -37,7 +37,7 @@ flowchart LR
   S02_01 -->|"taps Download Report<br>[file downloads]"| S02_01
 ```
 
-UC-04 (`S-F01-01`) is an optional preparation step for Export Sales & Marketing when valid shipment PCF is not yet available. With existing verified carbon/PCF inputs, Export Sales & Marketing or Procurement & Raw Materials proceeds directly to UC-07 (`S-F02-01`).
+UC-04 (`S-F01-01`) prepares missing shipment-level PCF for Export Sales & Marketing. UC-07 (`S-F02-01`) loads the stored shipment record and verified carbon-intensity inputs (FR-02-01), validates eligibility and required fields (FR-02-02), and calculates CBAM embedded emissions separately (FR-02-03). The documents do not equate shipment PCF with CBAM embedded emissions. Procurement uses UC-07 with pre-existing valid shipment/carbon data; UC-04 is not an automatic step.
 
 ## 10. Customers
 
@@ -118,10 +118,10 @@ flowchart LR
 
 ## Checks (chưa fix)
 
-- Every screen in the Screen List appears: yes (7 of 7).
+- Screen IDs: 9 of 9 IDs in `screen-list.md` are referenced in the diagrams (static check; final review pending).
 - Every screen reachable from an entry point: yes.
 - No dead ends: yes.
-- Usage-flow paths: every arrow of [usage-flow.md](usage-flow.md) has a path (table below).
+- Usage-flow paths: F-02 and existing mapped paths appear below; full cross-feature coverage remains pending team review.
 - Sign in is shared; signed-out users who open an email or QR link see S-F00-01 first and then
   return to the screen they asked for (screen-level rule in S-F00-01).
 
@@ -135,7 +135,7 @@ flowchart LR
 |UC-11 to UC-12|System Admin: `S-F04-01` → `S-F04-02` (opens Audit Logs).|
 |UC-10 to UC-04|Export Sales & Marketing: `S-F00-01` → `S-F01-01` (signed in; opens shipment-level PCF calculation).|
 |UC-04 to UC-07 (if PCF required)|Export Sales & Marketing: `S-F01-01` → `S-F02-01` (PCF calculated and stored; user proceeds to CBAM estimation).|
-|UC-10 to UC-07|Export Sales & Marketing / Procurement & Raw Materials: `S-F00-01` → `S-F02-01` (signed in; verified carbon/PCF inputs already available).|
+|UC-10 to UC-07|Export Sales & Marketing / Procurement & Raw Materials: `S-F00-01` → `S-F02-01` (signed in; stored shipment PCF available; UC-07 validates verified carbon intensity and other required inputs).|
 |UC-10 to UC-08|Compliance / Product Owner: `S-F00-01` → `S-F02-02` (authenticated; view permission granted).|
 |UC-08 rule maintenance|Compliance / Product Owner: `S-F02-02` → `S-F02-03` (create/edit permitted) → `S-F02-02` (after successful activation or return). `M-F02-03` is a modal on `S-F02-03`, not a separate screen.|
 

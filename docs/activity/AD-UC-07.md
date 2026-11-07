@@ -79,7 +79,7 @@ Reading notes:
 
 |Actor action|Screen ID|
 |-|-|
-|Select shipment batch \& review report|SCR-02-01 (CBAM Exposure Dashboard)|
+|Select shipment batch \& review report|S-F02-01 (CBAM Estimation & Analysis)|
 
 ## 6\. Open questions
 

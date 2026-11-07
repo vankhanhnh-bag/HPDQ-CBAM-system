@@ -140,15 +140,14 @@ flowchart LR
 flowchart LR
   A(["Export Sales & Marketing needs to estimate CBAM cost exposure for an export shipment"])
   U10["UC-10: Authenticate and Sign In"]
-  D{"Valid shipment-level PCF data already available?"}
   U04["UC-04: Calculate shipment-level PCF"]
   U07["UC-07: Estimate & analyze CBAM exposure for shipment"]
   Z(["CBAM estimate and calculation breakdown available for quotation or review"])
 
-  A --> U10 --> D
-  D -->|"Yes: use existing PCF data"| U07
-  D -->|"No: PCF calculation required"| U04
-  U04 -->|"PCF successfully calculated and stored"| U07
+  A --> U10
+  U10 -->|"Stored shipment-level PCF available"| U07
+  U10 -->|"Shipment PCF missing; calculate first"| U04
+  U04 -->|"PCF saved; UC-07 validates CBAM inputs"| U07
   U07 --> Z
 ```
 
@@ -157,6 +156,8 @@ flowchart LR
 |1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
 |2 (if required)|UC-04 Calculate shipment-level PCF|`docs/activity/AD-UC-04.md`|`S-F01-01`|
 |3|UC-07 Estimate & analyze CBAM exposure for shipment|`docs/activity/AD-UC-07.md`|`S-F02-01`|
+
+> **Data dependency:** UC-04 prepares and stores shipment-level PCF when it is missing. UC-07 loads the stored shipment record and verified carbon-intensity data (FR-02-01), validates all required CBAM inputs (FR-02-02), and performs its own embedded-emissions calculation (FR-02-03). The source requirements do not establish that lifecycle PCF and CBAM embedded emissions are identical. UC-04 is an optional prior user action, not an automatic step within every UC-07 estimate.
 
 
 ## Compliance / Product Owner
@@ -230,21 +231,14 @@ flowchart LR
 |2|UC-09 Compare and recommend green steel options|`docs/activity/AD-UC-09.md`|`S-F03-01, S-F03-02`|
 
 
-## Use cases without a flow (ai làm thì xóa dòng mặc định và ghi chú này)
-
-| Use case | Started by | Described in |
-|---|---|---|
-| UC-05 Release no-show seats | Time (15 minutes after a slot starts) | `AD-UC-05.md`; the student only sees the result as an email |
-
 ## Checks before you save (chưa fix)
 
 - [x] Every actor that starts a use case has at least one flow.
 - [x] An actor with clearly different goals has one flow per goal; no flow has more than about
-      9 boxes (Student 4 use cases, Lab Technician 2).
+      9 boxes.
 - [x] Every actor name matches the Use Case Diagram and the Context Diagram.
-- [x] Coverage: UC-01 to UC-04 (Must) and UC-06, UC-07 (Should) each appear in a flow with the
-      same ID and name; UC-05 is listed under "Use cases without a flow"; no Won't-have use case
-      appears.
+- [x] Coverage: UC-01 through UC-12 are represented in actor-organized usage flows, including
+      UC-05 under Procurement; no leftover LabDesk example is listed.
 - [x] No box is a click or a screen; no box tells two use cases.
-- [x] Every flow renders on mermaid.live.
-- [x] Every step has at least one screen, and every screen in `screen-list.md` appears in some step.
+- [ ] Mermaid Live rendering still requires a final team check.
+- [ ] Full step-to-screen coverage is pending for UC-01, UC-02, UC-03, UC-05 and UC-06; the F-02 screen IDs are mapped.
