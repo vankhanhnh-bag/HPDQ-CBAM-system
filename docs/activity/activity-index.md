@@ -1,4 +1,4 @@
-# Activity Diagram Index: LabDesk (worked example)
+# Activity Diagram Index: EcoTrace
 
 One row per use case in the Use Case inventory. Every use case appears, even when it needs no
 diagram, so a reader can see that the decision was made on purpose.
@@ -7,10 +7,10 @@ diagram, so a reader can see that the decision was made on purpose.
 
 | # | Finding | Source to fix | Action | Owner | Status |
 |---|---|---|---|---|---|
-| 1 | Seats left unused must be released 15 minutes after the slot starts, but no use case covered it | Use Case Diagram | Added UC-05 "Release no-show seats" (started by time) | Integrator | Done |
-| 2 | Email service sends confirmations (seen in the sequence for UC-01) but was missing from the Context Diagram | Context Diagram | Added "Email service" as an external entity | Owner A | Done |
-| 3 | A timed job needs a scheduler that the Lesson 4 architecture did not have | Architecture | ADR-004 "Add a scheduler for timed jobs" | Integrator | Done |
-| 4 | Sequence "Booking flow" told UC-01 and UC-02 together; cancel was an `opt` | Sequence Diagrams | Split into SD-UC-01 and SD-UC-02; the choice moved to the activity diagrams | Owner A | Open |
+| 1 | UC-01 is "Submit production & energy data" in W0, but "Submit supplier & raw material carbon data" in the Use Case Diagram, W1 and AD-UC-01 | W0 / Use Case Diagram | Confirm the approved UC-01 name and actor, then align the source documents | Not assigned | Open |
+| 2 | `AD-UC-05.md` describes LabDesk no-show seats, not EcoTrace UC-05 "Perform Scope 3 assessment" | Activity Diagram | Replace the teaching example with an EcoTrace UC-05 activity if a diagram is required | Not assigned | Open |
+| 3 | SD-UC-03, SD-UC-05 and SD-UC-12 are listed in the Use Case Diagram, but the corresponding files are absent | Sequence Diagrams | Complete or formally account for the missing sequence diagrams before final cross-check | Not assigned | Open |
+| 4 | AD-UC-04 refers to proposed `FR-01-09`, while W1 currently stops at `FR-01-08` for F-01 | W1 / AD-UC-04 | Decide whether to add the requirement to W1 or align the AD to existing approved FRs | Not assigned | Open |
 
 ## Use cases
 
@@ -21,18 +21,28 @@ covers two use cases.
 
 | Use case | Name | Feature | Priority | Activity diagram | Status | Reason if not needed |
 |---|---|---|---|---|---|---|
-| UC-01 | Reserve a seat | F-01 | Must | `AD-UC-01.md` | Reviewed | |
-| UC-02 | Cancel a booking | F-01 | Must | `AD-UC-02.md` | Draft | |
-| UC-03 | View my bookings | F-01 | Must | not needed | | Single display step; no decision, one lane |
-| UC-04 | Check in at the lab | F-02 | Must | `AD-UC-04.md` | Draft | |
-| UC-05 | Release no-show seats | F-02 | Must | `AD-UC-05.md` | Reviewed | |
-| UC-06 | Block a seat for maintenance | F-03 | Should | `AD-UC-06.md` | Draft | |
-| UC-07 | View lab occupancy | F-03 | Should | not needed | | Single display step |
+| UC-01 | Submit supplier & raw material carbon data | F-01 | Must | `AD-UC-01.md` | Present; review not stated | |
+| UC-02 | Manage GHG methodology & emission factors | F-01 | Must | `AD-UC-02.md` | Present; review not stated | |
+| UC-03 | Access batch carbon intensity | F-01 | Must | Not provided | Open | |
+| UC-04 | Calculate shipment-level PCF | F-01 | Must | `AD-UC-04.md` | Present; FR-01-09 unresolved | |
+| UC-05 | Perform Scope 3 assessment | F-01 | Should | Not provided (current `AD-UC-05.md` is LabDesk) | Open | |
+| UC-06 | View carbon traceability record | F-01 | Must | `AD-UC-06.md` | Draft; FR-01-07 Must slice only | |
+| UC-07 | Estimate & analyze CBAM exposure for shipment | F-02 | Must | `AD-UC-07.md` | Draft | |
+| UC-08 | Manage CBAM regulatory rules & parameters | F-02 | Must | `AD-UC-08.md` | Draft; review pending | |
+| UC-09 | Compare and recommend green steel options | F-03 | Must | `AD-UC-09.md` | Present; review not stated | |
+| UC-10 | Authenticate and sign in to the platform | F-04 | Must | `AD-UC-10.md` | Draft; source reconciliation pending | |
+| UC-11 | Configure Role-Based Access Control (RBAC) and system authorization | F-04 | Must | `AD-UC-11.md` | Present; review not stated | |
+| UC-12 | Monitor, track, and export system audit logs | F-04 | Must | Not provided | Open | |
 
 Object state lists collected from all diagrams (copy into the data model in DBIZ3):
 
 | Object | States |
 |---|---|
-| Booking | Confirmed, Checked-in, Cancelled, No-show |
-| Seat | Free, Booked, Blocked |
-| Booking right (per student) | Active, Suspended |
+| GHG Methodology & Emission Factor | Created, Versioned |
+| Shipment PCF | Calculated |
+| Supplier / production / shipment traceability records | Created; linked in the traceability model |
+| Traceability graph | Existing or initial graph, Updated (logical states) |
+| Shipment Batch | Selected, Loaded |
+| CBAM Exposure Report | Generated |
+| CBAM regulatory rule set | Draft; Active / future-effective (exact status enum not finalized) |
+| Comparison & Recommendation Results | Calculated, Ranked |
