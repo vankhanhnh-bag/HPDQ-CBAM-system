@@ -19,7 +19,7 @@ Screen ID pattern: `S-<feature>-<nn>`. Shared screens use `S-F00-<nn>`.
 |---|---|---|
 | M-F02-01 Share CBAM result | S-F02-01 | Create a shareable, access-controlled link to the current estimate (FR-02-13) |
 | M-F02-02 View assumptions | S-F02-01 | Show the full list of regulation version, price reference date and calculation method used (part of FR-02-09) |
-| M-F02-03 Confirm rule set activation | S-F02-03 | Confirm a permanent, system-wide change before FR-02-17 takes effect — activating replaces what every CBAM estimate uses going forward |
+| M-F02-03 Confirm rule set activation | S-F02-03 | Confirm a permanent, system-wide change before FR-02-17 takes effect - activating replaces what every CBAM estimate uses going forward |
 
 ## What is deliberately not a screen
 
