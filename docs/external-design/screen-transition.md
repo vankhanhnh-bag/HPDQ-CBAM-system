@@ -133,6 +133,11 @@ flowchart LR
 |UC-10 to UC-11|System Admin: `S-F00-01` → `S-F04-01` (authenticated; permission granted).|
 |UC-10 to UC-12|System Admin / Auditor: `S-F00-01` → `S-F04-02` (authenticated; audit-view permission granted).|
 |UC-11 to UC-12|System Admin: `S-F04-01` → `S-F04-02` (opens Audit Logs).|
+|UC-10 to UC-04|Export Sales & Marketing: `S-F00-01` → `S-F01-01` (signed in; opens shipment-level PCF calculation).|
+|UC-04 to UC-07 (if PCF required)|Export Sales & Marketing: `S-F01-01` → `S-F02-01` (PCF calculated and stored; user proceeds to CBAM estimation).|
+|UC-10 to UC-07|Export Sales & Marketing / Procurement & Raw Materials: `S-F00-01` → `S-F02-01` (signed in; verified carbon/PCF inputs already available).|
+|UC-10 to UC-08|Compliance / Product Owner: `S-F00-01` → `S-F02-02` (authenticated; view permission granted).|
+|UC-08 rule maintenance|Compliance / Product Owner: `S-F02-02` → `S-F02-03` (create/edit permitted) → `S-F02-02` (after successful activation or return). `M-F02-03` is a modal on `S-F02-03`, not a separate screen.|
 
 
 
