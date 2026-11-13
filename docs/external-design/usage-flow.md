@@ -9,22 +9,6 @@
 
 > Usage flows are grouped **by actor**, then **by distinct actor goal**. Each Mermaid box represents a Use Case, not a click or screen. The original group flows are retained; F-02 (UC-07 and UC-08) is added under the actors already present, rather than under a separate feature heading. Sign-in (UC-10) is a shared F-04 use case and only applies when the user needs to authenticate; an existing session proceeds to the destination UC.
 
-## All Users
-
-### Sign in to access EcoTrace
-
-```mermaid
-flowchart LR
-  A(["User needs to access EcoTrace"])
-  U1["UC-10: Authenticate and Sign In"]
-  Z(["Authenticated session established; user proceeds to the requested EcoTrace destination"])
-  A --> U1 --> Z
-```
-
-|Step|Use case|Activity diagram|Screens (fill in after Block 2)|
-|-|-|-|-|
-|1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
-
 ## Procurement
 
 ### Record supplier and raw material carbon data
@@ -32,28 +16,32 @@ flowchart LR
 ```mermaid
 flowchart LR
   A(["Procurement needs to record carbon information for a supplier delivery"])
-  U1["UC-01: Submit supplier & raw material carbon data"]
+  U1["UC-10: Authenticate and Sign In"]
+  U2["UC-01: Submit supplier & raw material carbon data"]
   Z(["Supplier delivery carbon record stored in EcoTrace"])
-  A --> U1 --> Z
+  A --> U1 --> U2 --> Z
 ```
 
 |Step|Use case|Activity diagram|Screens (fill in after Block 2)|
 |-|-|-|-|
-|1|UC-01 Submit supplier & raw material carbon data|`docs/activity/AD-UC-01.md`|-|
+|1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
+|2|UC-01 Submit supplier & raw material carbon data|`docs/activity/AD-UC-01.md`|-|
 
 ### Assess Scope 3 emissions
 
 ```mermaid
 flowchart LR
   A(["Procurement needs to assess Scope 3 emissions for a supplier or material category"])
-  U1["UC-05: Perform Scope 3 assessment"]
+  U1["UC-10: Authenticate and Sign In"]
+  U2["UC-05: Perform Scope 3 assessment"]
   Z(["Scope 3 assessment summary available for review"])
-  A --> U1 --> Z
+  A --> U1 --> U2 --> Z
 ```
 
 |Step|Use case|Activity diagram|Screens (fill in after Block 2)|
 |-|-|-|-|
-|1|UC-05 Perform Scope 3 assessment|`docs/activity/AD-UC-05.md` **(not present in current activity-diagram set)**|-|
+|1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
+|2|UC-05 Perform Scope 3 assessment|`docs/activity/AD-UC-05.md` **(not present in current activity-diagram set)**|-|
 
 ### Estimate CBAM exposure for procurement decisions (Procurement & Raw Materials)
 
@@ -78,28 +66,32 @@ flowchart LR
 ```mermaid
 flowchart LR
   A(["Sustainability & ESG needs to create or update GHG methodology or emission factors"])
-  U1["UC-02: Manage GHG methodology & emission factors"]
+  U1["UC-10: Authenticate and Sign In"]
+  U2["UC-02: Manage GHG methodology & emission factors"]
   Z(["GHG methodology or emission-factor configuration saved"])
-  A --> U1 --> Z
+  A --> U1 --> U2 --> Z
 ```
 
 |Step|Use case|Activity diagram|Screens (fill in after Block 2)|
 |-|-|-|-|
-|1|UC-02 Manage GHG methodology & emission factors|`docs/activity/AD-UC-02.md` **(not present in current activity-diagram set)**|-|
+|1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
+|2|UC-02 Manage GHG methodology & emission factors|`docs/activity/AD-UC-02.md` **(not present in current activity-diagram set)**|-|
 
 ### View carbon traceability record
 
 ```mermaid
 flowchart LR
   A(["Sustainability & ESG needs to trace a shipped product batch"])
-  U1["UC-06: View carbon traceability record"]
+  U1["UC-10: Authenticate and Sign In"]
+  U2["UC-06: View carbon traceability record"]
   Z(["Carbon traceability record displayed for review"])
-  A --> U1 --> Z
+  A --> U1 --> U2 --> Z
 ```
 
 |Step|Use case|Activity diagram|Screens (fill in after Block 2)|
 |-|-|-|-|
-|1|UC-06 View carbon traceability record|`docs/activity/AD-UC-06.md`|-|
+|1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
+|2|UC-06 View carbon traceability record|`docs/activity/AD-UC-06.md`|-|
 
 ## Production
 
@@ -108,14 +100,16 @@ flowchart LR
 ```mermaid
 flowchart LR
   A(["Production needs the carbon intensity of a production batch"])
-  U1["UC-03: Access batch carbon intensity"]
+  U1["UC-10: Authenticate and Sign In"]
+  U2["UC-03: Access batch carbon intensity"]
   Z(["Batch carbon intensity available for review"])
-  A --> U1 --> Z
+  A --> U1 --> U2 --> Z
 ```
 
 |Step|Use case|Activity diagram|Screens (fill in after Block 2)|
 |-|-|-|-|
-|1|UC-03 Access batch carbon intensity|`docs/activity/AD-UC-03.md` **(not present in current activity-diagram set)**|-|
+|1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
+|2|UC-03 Access batch carbon intensity|`docs/activity/AD-UC-03.md` **(not present in current activity-diagram set)**|-|
 
 ## Export Sales & Marketing
 
@@ -124,14 +118,16 @@ flowchart LR
 ```mermaid
 flowchart LR
   A(["Export Sales & Marketing needs the PCF of a shipment"])
-  U1["UC-04: Calculate shipment-level PCF"]
+  U1["UC-10: Authenticate and Sign In"]
+  U2["UC-04: Calculate shipment-level PCF"]
   Z(["Shipment-level PCF calculated, stored, and displayed"])
-  A --> U1 --> Z
+  A --> U1 --> U2 --> Z
 ```
 
 |Step|Use case|Activity diagram|Screens (fill in after Block 2)|
 |-|-|-|-|
-|1|UC-04 Calculate shipment-level PCF|`docs/activity/AD-UC-04.md`|`S-F01-01`|
+|1|UC-10 Authenticate and Sign In|`docs/activity/AD-UC-10.md`|`S-F00-01`|
+|2|UC-04 Calculate shipment-level PCF|`docs/activity/AD-UC-04.md`|`S-F01-01`|
 
 
 ### Estimate CBAM exposure for an export shipment
